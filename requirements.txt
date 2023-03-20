@@ -1,6 +1,18 @@
-# Dependencies for generating/publishing Python binaries.
+asgiref==3.6.0
 bob-builder==0.0.19
-
-# Sub-dependencies of bob-builder.
 boto==2.49.0
+certifi==2022.12.7
+charset-normalizer==3.1.0
+distlib==0.3.6
+Django==4.1.7
 docopt==0.6.2
+filelock==3.9.1
+gunicorn==20.1.0
+idna==3.4
+platformdirs==3.1.1
+requests==2.28.2
+sqlparse==0.4.3
+tzdata==2022.7
+urllib3==1.26.14
+virtualenv-clone==0.5.7
+whitenoise==6.4.0
