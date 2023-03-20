@@ -1,0 +1,22 @@
+.navbar{
+    margin:0%;
+    padding: 0%;
+    border: 1px solid rgb(0, 0, 0);
+    background-color:deepskyblue !important;
+}
+
+.title1{
+    font-family: 'sans-serif';
+}
+.navbar ul li a {
+    color:whitesmoke;
+}
+.navbar ul li a:hover {
+     color:#000;}
+
+.dropdown-item {
+    background-color:deepskyblue !important;
+}
+.myCarouselTop{
+    margin-top: 45px !important;
+}

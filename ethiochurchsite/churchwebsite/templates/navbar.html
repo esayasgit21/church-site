@@ -1,0 +1,112 @@
+{% load static %}
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index'%}">
+          <img src="{% static 'images/logo.png' %}" width="75" height="75" alt="D.B.K.G">D.B.K.G
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'events' %}">Events</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Services
+                </a>
+                <ul class="dropdown-menu">
+                   
+                    <li><a class="dropdown-item" href="https://docs.google.com/forms/d/e/1FAIpQLSfppgh4rLbpiOW4K6x45pP_IgXCOoeGzTA2vL7RaAIP03E-lg/viewform" target="_blank">Membership Form</a></li>
+                    <li><a class="dropdown-item" href="#christeningmodal" data-bs-toggle="modal">Christening Service</a></li>
+                    <li><a class="dropdown-item" href="#weddingmodal" data-bs-toggle="modal">Wedding Service</a></li>
+                    <li><a class="dropdown-item" href="#memorialmodal" data-bs-toggle="modal">Memorial Service </a></li>
+                    <li><a class="dropdown-item" href="#">Offerings and Tithing</a></li>
+                    <li><a class="dropdown-item" href="#">Kids School</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About Us</a>
+              </li>           
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.paypal.com/donate/?hosted_button_id=XZNFU8XV5EE2L" target="_blank">Donate</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Admin</a>
+              </li>
+              
+          </ul>
+          <span class="message">"ወደ እግዚሐብሄር ቤት እንሂድ ባሉኝ ግዜ በጣም ደስ ኣለኝ“</span>
+          
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="modal fade" id="weddingmodal" tabindex="-1" aria-labelledby="weddingmodal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <img src="{% static 'images/wedding.jpg' %}" width="100" height="100" alt="Wedding Information">
+                <h5 class="modal-title Information" id="weddingmodal">&nbsp; Wedding Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Lideta Mariam Ethiopian Orthodox Tewahedo Church provides <strong>Wedding services on Sundays from 10:00 A.M. to 12:00 P.M.</strong> 
+                The church will provide the religious service for the bride and groom. For further questions or explanation,
+                please contact the church by Phone: <a href="tel:+13174562564"> (206) 999-3456</a>, Email: <a href="mailto:gizaw.esayas@gmail.com">gizaw.esayas@gmail.com</a> or in person.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info btn-lg" data-bs-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="memorialmodal" tabindex="-1" aria-labelledby="memorialmodal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <img src="{% static 'images/memorial.jpg' %}" width="100" height="100" alt="Memorial Information">
+                <h5 class="modal-title Information" id="memorialmodal">&nbsp; Memorial Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Lideta Bata Mariam Ethiopian Orthodox Tewahedo Church provides <strong>memorial service for orthodox believers who depart from this world.</strong> 
+                If you need further explanation or have questions regarding the service, please contact the church administrator
+                by Phone: <a href="tel:+13174562564"> (206) 999-3456</a>, Email: <a href="mailto:gizaw.esayas@gmail.com">gizaw.esayas@gmail.com</a> or in person.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info btn-lg" data-bs-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="modal fade" id="christeningmodal" tabindex="-1" aria-labelledby="christeningmodal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <img src="{% static 'images/christenin.jpg' %}" width="100" height="100" alt="Christening Information">
+                  <h5 class="modal-title Information" id="christeningmodal">&nbsp; Christening Information</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Lideta Bata Mariam Ethiopian Orthodox Tewahedo Church provides <strong>Christening Service starts every Sundays exactly at 06:00 A.M.</strong> 
+                  Please contact the office administrator ahead of time. by Phone: <a href="tel:+13174562564"> (206) 999-3456</a>
+                  Email: <a href="mailto:gizaw.esayas@gmail.com">gizaw.esayas@gmail.com</a> or in person. 
+                  If you can print this <a href="#">Form</a> sign and bring with you. Please be there on time.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-info btn-lg" data-bs-dismiss="modal">Ok</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  </header>

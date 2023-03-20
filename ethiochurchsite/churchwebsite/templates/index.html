@@ -1,0 +1,192 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+  <main>
+ 
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="background-color: #f0ebf8;">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'carousel/1.jpg' %}" class="d-block w-100 h-100" alt="...">
+  
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1>Example headline.</h1>
+              <p>Some representative placeholder content for the first slide of the carousel.</p>
+              <p><a class="bd-placeholder-img"  class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'carousel/4.jpg' %}" class="d-block w-100 h-100" alt="...">
+  
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Another example headline.</h1>
+              <p>Some representative placeholder content for the second slide of the carousel.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'carousel/3.jpg' %}" class="d-block w-100 h-100" alt="...">
+  
+          <div class="container">
+            <div class="carousel-caption text-end">
+              <h1>One more for good measure.</h1>
+              <p>Some representative placeholder content for the third slide of this carousel.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  
+
+    <div class="container-fluid marketing" style="background-color: #f0ebf8;">
+  
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img width="150" height="150" src="{% static 'images/wordbook.jpg' %}" class="rounded-circle" alt="Holiy Bible">
+  
+          <h2 class="fw-normal">የወንጌል አገልግሎት</h2>
+          <p><strong>Christian is to be a living and holy sacrifice, acceptable to God</strong>  which is your reasonable, spiritual service of worship.</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img width="150" height="150" src="{% static 'images/begena.jpg' %}" class="rounded-circle" alt="Begena image">
+  
+          <h2 class="fw-normal">የመንፈሳዊ አገልግሎት</h2>
+          <p>The spiritual discipline of service means <strong>choosing to do something for someone else (often in secret) without expecting anything else in return</strong> . 
+          </p>
+          <p><a class="btn btn-secondary" href="{% url 'spritual'%}">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img width="150" height="150" src="{% static 'images/bible.jpg' %}" class="rounded-circle" alt="Holi Bible">
+  
+          <h2 class="fw-normal">የዶክትሪን ትምህርት</h2>
+          <p>The doctrinal teaching of the Ethiopian Orthodox Church is firmly grounded in the five pillars of mystery.</p>
+          <p><a class="btn btn-secondary" href="{% url 'doctrinal' %}">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+  
+  
+      <!-- START THE FEATURETTES -->
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h3 class="featurette-heading fw-normal lh-1">A Brief History of Ethiopian Orthodox Tewahedo Church.</span></h3>
+          <p class="lead">
+            <p class="lead">
+              Ethiopia, the land of Judeo-Christianity, is one of the most ancient predominantly Christian countries of the world. It is marked with a fascinating history, unique civilization, culture and religious life. The Book of Genesis recounts: “And the name of the second river is Ghion: the same is it that compasses the whole land of Ethiopia” (Geneses 2:13). The Psalmist David also says: “Let Ethiopia hasten to stretch out her hands to God” (Psalms 68:31).
+            </p>
+            <p class="lead">
+            Furthermore, historical and archaeological evidences reveal another interesting fact that Ethiopia is the only African country, which has developed its own alphabets and written language. This great land and its people were known by the ancient Greek poets and historians such as Homer, who referred to them as, “Blameless Race.” Herodotus also indicated the country’s landscape as the area south of Egypt and around the Red Sea extending as far as the Indian Ocean. He said that the Ethiopians “lived a long life” and characterized them as “the most just men.”
+          </p>
+        </p>
+        </div>
+        <div class="col-md-5">
+          
+          <img src="{% static 'images/EthiopiaChurch.jpg' %}" width="500" height="500" class="bd-placeholder-img-lg" alt="Ethiopian Church">
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h3 class="featurette-heading fw-normal lh-1">History of Ethiopian Orthodox Tewahedo Church. <span class="text-muted">in Lynnwood Area.</span></h3>
+          <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <img src="{% static 'images/dbsaintg.jpg' %}" width="500" height="500" class="bd-placeholder-img-lg" alt="Lynnwood Church">
+  
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h3 class="featurette-heading fw-normal lh-1">Holy Scripture. <span class="text-muted">it is truth.</span></h3>
+          <p class="lead">The Ethiopian Orthodox Church understands Holy Scripture as “the fruit of the Holy Spirit grown on the tree of tradition.”  The Church’s canon of scripture comprises the all the Septuagint Old Testament including the Books of Enoch, Jubilee, the fourth book of Ezra, three books of Maccabees.  The canon also consists of the twenty-seven books of the New Testament.</p>
+        </div>
+        <div class="col-md-5">
+          <img src="{% static 'images/scripture.jpg' %}" width="500" height="500" class="bd-placeholder-img-lg" alt="Holy Scripture">
+  
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h3 class="featurette-heading fw-normal lh-1">ቤተ ክርስቲያንን ያግዙ!!</h3>
+          <p class="lead">ለቤተ ክርስቲያን የገንዘብ መስጠት፣ ስለት፣ መባ እና የአባልነት ክፍያ ለማድረግ የሚከተሉትን አማራጮች ይጠቀሙ።</p>
+          <ul class="list-suppert">
+            <li>በድረ ገጽ ለመስጠት <a href="https://www.paypal.com/donate/?hosted_button_id=XZNFU8XV5EE2L" target="_blank">Donate</a> የሚለውን ይጫኑ።</li>
+            <li>በቼክ ለመላክ የቤተ ክርስቲያኑ አድራሻ
+              <address>Pay to: D.B.K.G Church</address>
+            </li>
+            <li>ስልክ በመደወል ለመክፈል, call <a href="tel:+13174562564">(206) 999-3456</a>
+             
+            </li>
+            <li>በቀጥታ በቤተ ክርስቲያኑ የባንክ ለመላክ (For Direct Deposit)
+               <p>
+                Bank Name: Wells Fargo Bank, <br>
+                Account Number: ####### <br>
+                Rounting Number: ######  
+               </p>
+            </li>
+            <li>በ Zelle ለመላክ የመደመር ምልክቷን በመክፈት   
+              <ul>
+                <li>First Name: D.B.K.G</li>
+                <li>Last Name: Gabriel Church</li>
+                <li>Email: dbkg@gmail.com or</li>
+                <li>Phone Number: (206) 999-3456 ብለው በመሙላት መላክ ይችላሉ።</li>
+              </ul>
+           </li>
+           <li>በሐገራችን የሚደርሱ የተፈጥሮና ሰው ሰራሽ አደጋዎች ለመርዳት እዚህ Donate ያድርጉ።
+            
+            
+         </li>
+                
+            </ul>
+        </div>
+        <div class="col-md-5">
+          <img src="{% static 'images/moneybag.jpg' %}" width="500" height="500" class="bd-placeholder-img-lg" alt="Holy Scripture">
+  
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <!-- /END THE FEATURETTES -->
+  
+    </div><!-- /.container -->
+    
+  
+    <!-- FOOTER -->
+
+  </main>
+
+
+{% endblock %}
