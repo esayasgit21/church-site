@@ -44,7 +44,9 @@ li {
      list-style: upper-roman;
 }
 
-
+#myCarousel{
+    margin-top: 1%;
+}
 @media only screen and (max-width: 600px) and (min-width: 380px) {
     .figure-caption{
       font-size: 1.3em !important;  
