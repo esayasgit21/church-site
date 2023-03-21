@@ -58,7 +58,9 @@ body {
   .featurette-heading {
     letter-spacing: -.05rem;
   }
-  
+  .carousel .carousel-item {
+    transition-duration: 2s !important;
+}
   /* rtl:end:remove */
   
   /* RESPONSIVE CSS
