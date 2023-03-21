@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-+o4d*rnef=o@917ed0q!+&7+h8^r2s#0gvwaxx_@sxo!y(3x=0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # ALLOWED_HOSTS = []
 
 ALLOWED_HOSTS = ['127.0.0.1','ethio-church-website.herokuapp.com']
@@ -131,7 +131,9 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # to host heroku
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # to host heroku
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' 
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
