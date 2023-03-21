@@ -20,11 +20,10 @@
                 </a>
                 <ul class="dropdown-menu">
                    
-                    <li><a class="dropdown-item" href="https://docs.google.com/forms/d/e/1FAIpQLSfppgh4rLbpiOW4K6x45pP_IgXCOoeGzTA2vL7RaAIP03E-lg/viewform" target="_blank">Membership Form</a></li>
-                    <li><a class="dropdown-item" href="#christeningmodal" data-bs-toggle="modal">Christening Service</a></li>
-                    <li><a class="dropdown-item" href="#weddingmodal" data-bs-toggle="modal">Wedding Service</a></li>
-                    <li><a class="dropdown-item" href="#memorialmodal" data-bs-toggle="modal">Memorial Service </a></li>
-                    <li><a class="dropdown-item" href="#">Offerings and Tithing</a></li>
+                    <li><a class="dropdown-item" href="https://docs.google.com/forms/d/e/1FAIpQLSfppgh4rLbpiOW4K6x45pP_IgXCOoeGzTA2vL7RaAIP03E-lg/viewform" target="_blank">Membership (አባልነት)</a></li>
+                    <li><a class="dropdown-item" href="#christeningmodal" data-bs-toggle="modal">Christening (ክርስትና)</a></li>
+                    <li><a class="dropdown-item" href="#weddingmodal" data-bs-toggle="modal">Wedding (ሰርግ)</a></li>
+                    <li><a class="dropdown-item" href="#memorialmodal" data-bs-toggle="modal">Wake Services (ፍትሓት) </a></li>                 
                     <li><a class="dropdown-item" href="#">Kids School</a></li>
                 </ul>
             </li>
@@ -34,9 +33,22 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'contact' %}">Contact</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.paypal.com/donate/?hosted_button_id=XZNFU8XV5EE2L" target="_blank">Donate</a>
-              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Support
+                </a>
+                <ul class="dropdown-menu">
+                   
+                     <li class="nav-item">
+                      <a class="dropdown-item" href="https://www.paypal.com/donate/?hosted_button_id=XZNFU8XV5EE2L" target="_blank">Donate (መለገስ)</a>
+                    </li>
+                    <li><a class="dropdown-item" href="#">Vow (ስለት) </a></li>
+                    <li><a class="dropdown-item" href="#">Offering (ሙዳይ) </a></li>
+                    <li><a class="dropdown-item" href="#">Tithing (አስራት)</a></li>
+                   
+                </ul>
+            </li>
+              
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'login' %}">Admin</a>
               </li>
