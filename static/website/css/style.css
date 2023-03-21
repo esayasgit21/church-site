@@ -43,6 +43,8 @@ li {
 .list-suppert li{
      list-style: upper-roman;
 }
+
+
 @media only screen and (max-width: 600px) and (min-width: 380px) {
     .figure-caption{
       font-size: 1.3em !important;  
