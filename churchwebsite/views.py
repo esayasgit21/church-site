@@ -51,3 +51,6 @@ def doctrinal(req):
 
 def spritual(req):
     return render(req, 'spritual.html',{})
+
+def bibleStudy(req):
+    return render(req, 'bible.html',{})

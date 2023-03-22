@@ -67,4 +67,7 @@ li {
         width: 100%;
         margin: auto;
     }
+    .text-center{
+        margin-left: 2px;
+    }
   }

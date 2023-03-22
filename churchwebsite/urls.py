@@ -9,5 +9,6 @@ urlpatterns = [
     path('login', views.login, name='login'),   
     path('events', views.events, name='events'),
     path('doctrinal', views.doctrinal, name='doctrinal'),
-    path('spritual',views.spritual,name='spritual')
+    path('spritual',views.spritual,name='spritual'),
+    path('bible',views.bibleStudy,name='bible')
 ]
