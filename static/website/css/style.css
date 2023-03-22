@@ -43,9 +43,21 @@ li {
 .list-suppert li{
      list-style: upper-roman;
 }
-
+.call-us {
+    text-align: center;
+    font-size: 46px !important;
+}
 #myCarousel{
     margin-top: 1%;
+}
+.featurette-divider{
+   margin: 1.5rem !important; 
+}
+.elementor-element .elementor-widget-container {
+    transition: .3s,
+    border .3s,
+    border-radius .3s,box-shadow .3s,
+    transform var(--e-transform-transition-duration,.4s)
 }
 @media only screen and (max-width: 600px) and (min-width: 380px) {
     .figure-caption{
