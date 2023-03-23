@@ -63,7 +63,7 @@ body {
     letter-spacing: -.05rem;
   }
   .carousel .carousel-item {
-    transition-duration: 2s !important;
+    transition-duration: 1s !important;
 }
   /* rtl:end:remove */
   
