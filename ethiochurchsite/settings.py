@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'churchwebsite.apps.ChurchwebsiteConfig'
+    #'churchwebsite.apps.ChurchwebsiteConfig'
+    'churchwebsite',
+    'members',
 ]
 
 MIDDLEWARE = [

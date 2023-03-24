@@ -75,11 +75,19 @@
     <link href="{% static 'website/css/carousel.css' %}" rel="stylesheet">
   </head>
   <body>
+    {% include 'navbar.html'%}
     <section class="">
       <div class="container py-5 h-100">
+            {% if messages %}
+            {% for message in messages%}
+             
+              <div style="margin-top: 20px;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
     
-  {% include 'navbar.html'%}
-     
   {% block content %}
              
   {% endblock %}

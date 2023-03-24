@@ -70,4 +70,8 @@ li {
     .text-center{
         margin-left: 2px;
     }
+    .call-us {
+        text-align: center;
+        font-size: 24px !important;
+    }
   }
