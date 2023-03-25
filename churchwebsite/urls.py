@@ -12,7 +12,7 @@ urlpatterns = [
     path('doctrinal', views.doctrinal, name='doctrinal'),
     path('spritual',views.spritual,name='spritual'),
     path('bible',views.bibleStudy,name='bible'),
-    path('^generate_qr_code',views.generate_qr_code,name='script'),
+    #path('generate_qr_code',views.generate_qr_code,name='script'),
     #path('qrcode/<int:id>/',views.generate_qr_code,name='qrcode'),
-    #path('^qrcode/<data>/',views.generate_qr_code,name='qrcode'),
+    path('generate_qr_code',views.generate_qr_code,name='qrcode'),
 ]
