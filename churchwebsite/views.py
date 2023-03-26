@@ -78,7 +78,7 @@ def generate_qr_code(req):
     draw = ImageDraw.Draw(img)
     font = ImageFont.load_default()
     #font = ImageFont.truetype('bahnschrift.ttf',30)
-    font = ImageFont.truetype("assets/AGENCYB.TTF",30)
+    font = ImageFont.truetype("/assets/AGENCYB.TTF",30)
     draw.text((80,750),'Debre Bisrat Saint Gabriel & Arsema Website Link',font=font)
     #draw.text((300,550),name,font=font)
     # img = qr.make_image(fill_color="black", back_color="white")
