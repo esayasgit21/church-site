@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from datetime import date
 from django.core.mail import send_mail
-from django.http import BadHeaderError, HttpRequest, HttpResponse
+from django.http import BadHeaderError, FileResponse, HttpRequest, HttpResponse
 from .smtplib import ContactForm
 import qrcode
 from PIL import ImageDraw
@@ -34,13 +34,11 @@ def contact(req):
         form = ContactForm(req.POST,req.FILES)
         if form.is_valid():
             fromemail = req.POST.get('email',False)
-           
             body  = {
                 'name' : 'Name: ' + req.POST.get('name',False) + ',',
                 'message' : 'Message: ' + req.POST.get('message',False),  
                 'email' : 'From: ' + fromemail,                               
             }
-                  
             subject = req.POST.get('subject',False)
             message = "\n".join(body.values())
             try:
@@ -64,8 +62,7 @@ def bibleStudy(req):
     return render(req, 'bible.html',{})
 
 def generate_qr_code(req):
-    #print(f'option {data}')
-    #,data ='https://ethio-church-website.herokuapp.com/'
+
     img_bg = Image.open('static/website/img/core-img/cross.jpg')
     qr = qrcode.QRCode(
         version=1,
@@ -73,26 +70,11 @@ def generate_qr_code(req):
         box_size=10,
         border=4,
     )
-    #qr = qrcode.QRCode(box_size=20)
     qr.add_data('https://ethio-church-website.herokuapp.com/')
 
-    # qr.make(fit=True)
-    img = qr.make()
+    img = qr.make(fit=True)
     img_qr = qr.make_image()
-    #draw = ImageDraw.Draw(img)
-    #font = ImageFont.load_default()
-    #font = ImageFont.truetype('bahnschrift.ttf',30)
-    #font = ImageFont.truetype("/assets/AGENCYB.TTF",30)
-    #draw.text((80,750),'Debre Bisrat Saint Gabriel & Arsema Website Link',font=font)
-    #draw.text((300,550),name,font=font)
-    # img = qr.make_image(fill_color="black", back_color="white")
-    # img = qr.make_image(back_color=(255, 195, 235), fill_color=(55, 95, 35))
-    # Save the imgae as an image file
-    #img.save('churchwebsite.jpg')
     pos = (img_bg.size[0] - img_qr.size[0], img_bg.size[1] - img_qr.size[1])
     img_bg.paste(img_qr, pos)
-    img_bg.show('churchwebsite.png')
-    return redirect("index")
- 
-
-    
+    img_bg.save('churchwebsite.png')
+    return FileResponse(open('churchwebsite.png', 'rb'),as_attachment=True,filename='churchwebsiteQRCode.png')
