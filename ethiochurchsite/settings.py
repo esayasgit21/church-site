@@ -97,10 +97,10 @@ WSGI_APPLICATION = 'ethiochurchsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd76eug0ja9gdhu',
-        'USER': 'nljtzrchaodmac',
-        'PASSWORD': '15a2c9e09e279debc06e29d3d795c0d7b0d44a584aea2cbf4dd877a5d2d96d9c',
-        'HOST' : 'ec2-3-93-160-246.compute-1.amazonaws.com',
+        'NAME': 'dbhvcn0bm598nk',
+        'USER': 'xpwvxgidwshiql',
+        'PASSWORD': '2899eeda490705e3be58a1a1ffae89bcac7694e84c1c990b99337b45294aba6d',
+        'HOST' : 'ec2-34-193-110-25.compute-1.amazonaws.com',
         'PORT' : '5432'
 
     }

@@ -64,21 +64,24 @@ def bibleStudy(req):
 
 def generate_qr_code(req):
     file_path = 'static/website/img/core-img/qrcodeimg.jpg'
-    file_exists = os.path.exists(file_path)
-    print(file_exists)
-    img_bg = Image.open(file_path) 
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data('https://ethio-church-website.herokuapp.com/')
+    generatewd_file_path = 'static/website/img/core-img/churchwebsiteQrcode.png'
+    file_exists = os.path.exists(generatewd_file_path)
+    if file_exists is True:
+        return FileResponse(open(generatewd_file_path, 'rb'),as_attachment=True,filename=generatewd_file_path) 
+    else:
+        img_bg = Image.open(file_path) 
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        qr.add_data('https://ethio-church-website.herokuapp.com/')
 
-    #img = qr.make(fit=True)
-    img_qr = qr.make_image()
-    pos = (img_bg.size[0] - img_qr.size[0], img_bg.size[1] - img_qr.size[1])
-    img_bg.paste(img_qr, pos)
-    file_name = 'churchwebsiteQrcode.png'
-    img_bg.save(file_name)
-    return FileResponse(open(file_name, 'rb'),as_attachment=True,filename=file_name)
+        #img = qr.make(fit=True)
+        img_qr = qr.make_image()
+        pos = (img_bg.size[0] - img_qr.size[0], img_bg.size[1] - img_qr.size[1])
+        img_bg.paste(img_qr, pos)
+        file_name = generatewd_file_path
+        img_bg.save(file_name)
+        return FileResponse(open(file_name, 'rb'),as_attachment=True,filename=file_name)
