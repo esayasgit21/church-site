@@ -4,6 +4,7 @@ from django.core.mail import send_mail
 from django.http import BadHeaderError, FileResponse, HttpRequest, HttpResponse
 from .smtplib import ContactForm
 import qrcode
+import os
 from PIL import ImageDraw
 from PIL import ImageFont
 from PIL import Image
@@ -62,8 +63,10 @@ def bibleStudy(req):
     return render(req, 'bible.html',{})
 
 def generate_qr_code(req):
-
-    img_bg = Image.open('static/website/img/core-img/cross.jpg')
+    file_path = 'static/website/img/core-img/qrcodeimg.jpg'
+    file_exists = os.path.exists(file_path)
+    print(file_exists)
+    img_bg = Image.open(file_path) 
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -72,9 +75,10 @@ def generate_qr_code(req):
     )
     qr.add_data('https://ethio-church-website.herokuapp.com/')
 
-    img = qr.make(fit=True)
+    #img = qr.make(fit=True)
     img_qr = qr.make_image()
     pos = (img_bg.size[0] - img_qr.size[0], img_bg.size[1] - img_qr.size[1])
     img_bg.paste(img_qr, pos)
-    img_bg.save('churchwebsite.png')
-    return FileResponse(open('churchwebsite.png', 'rb'),as_attachment=True,filename='churchwebsiteQRCode.png')
+    file_name = 'churchwebsiteQrcode.png'
+    img_bg.save(file_name)
+    return FileResponse(open(file_name, 'rb'),as_attachment=True,filename=file_name)
