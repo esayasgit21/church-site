@@ -59,6 +59,12 @@ li {
     border-radius .3s,box-shadow .3s,
     transform var(--e-transform-transition-duration,.4s)
 }
+.card{
+    width: 24rem !important;
+}
+.border {
+    border: var(--bs-border-width) var(--bs-border-style) #0a0909!important;
+}
 @media only screen and (max-width: 600px) and (min-width: 380px) {
     .figure-caption{
       font-size: 1.3em !important;  
@@ -73,5 +79,9 @@ li {
     .call-us {
         text-align: center;
         font-size: 24px !important;
+    }
+    .card{
+        width: 18rem !important;
+        margin-left: 25px;
     }
   }

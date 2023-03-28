@@ -6,8 +6,79 @@
 {% load static %}
 <section class="vh-100" style="background-color: #f0ebf8;">
     <div class="container py-5 h-100">
-        <p class="lead">Event will be here</p>
-        <a class="btn btn-primary stretched-link" href="{% url 'qrcode' %}">Generate QR code for Church website</a>
+        {% if user.is_authenticated %}
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    QR Code Generator
+                </div>
+                <div class="card-body">
+                <p class="card-text">You can generate church website qr code using below button and it will automatically <strong>Download</strong> in your local computer and then got to your download location and then you can print out.</p>
+                <a class="btn btn-primary" href="{% url 'qrcode' %}">Generate Church Website QR Code</a>
+                </div>
+            </div>
+            <hr class="featurette-divider">
+            <div class="container">
+                <fieldset class="border rounded-3 p-3">
+                
+                    <legend class="float-none w-auto px-3">Add Upcoming Events</legend>
+                    <br/>
+
+                {% if submitted %}
+                        Your Event Was Submitted Succefully!!!
+
+                    {% else %}
+
+                        <form action="" method=POST>
+                            {% csrf_token %}
+
+                            {{ form.as_p }}
+
+                            <input type="submit" value="Submit" class="btn btn-secondary">
+
+                        </form>
+                {% endif %}
+
+                <br/><br/>	
+                </fieldset>
+                
+        
+            </div>
+            <hr class="featurette-divider">
+            <div class="container">
+                <fieldset class="border rounded-3 p-3">
+                
+                    <legend class="float-none w-auto px-3">Add School Materials</legend>
+                    <br/>
+
+                {% if submitted %}
+                        School material Was Submitted Succefully!!!
+
+                {% else %}
+
+                        <form action="" method=POST>
+                            {% csrf_token %}
+
+                            {{ form.as_p }}
+
+                            <input type="submit" value="Submit" class="btn btn-secondary">
+
+                        </form>
+                {% endif %}
+
+                <br/><br/>	
+                </fieldset>
+                
+        
+            </div>
+       
+
+        {% else %}
+        <h1>Sorry! You Must Be Logged In To View This Page...</h1>
+
+        <a href="{% url 'login' %}">Login Here</a>
+        {% endif %}
     </div>
+    
+
 </section>
 {% endblock %}
