@@ -12,7 +12,7 @@
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
           
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'show_event' %}">Events</a>
+              <a class="nav-link" href="{% url 'all_events' %}">Events</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,8 +55,8 @@
               </a>
               <ul class="dropdown-menu">            
                   <li><a class="dropdown-item" href="{% url 'register_user' %}" >Register User</a></li>
-                  <li><a class="dropdown-item" href="{% url 'add_event' %}" >Manage Pages </a></li>                 
-                  
+                  <li><a class="dropdown-item" href="{% url 'add_event' %}" >Add Events </a></li>                 
+                  <li><a class="dropdown-item" href="{% url 'admin_page' %}" >Manage Pages </a></li> 
               </ul>
           </li>
               <li class="nav-item">

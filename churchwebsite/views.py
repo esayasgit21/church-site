@@ -1,13 +1,17 @@
+from .models import Event
 from django.shortcuts import render, redirect
 from datetime import date
 from django.core.mail import send_mail
 from django.http import BadHeaderError, FileResponse, HttpRequest, HttpResponse
+from django.contrib import messages
+from churchwebsite.forms import AdminEventForm, EventForm
 from .smtplib import ContactForm
 import qrcode
 import os
 from PIL import ImageDraw
 from PIL import ImageFont
 from PIL import Image
+from django.http import HttpResponseRedirect
 #import requests
 #import urllib
 # import matplotlib.font_manager as fm
@@ -61,6 +65,70 @@ def spritual(req):
 
 def bibleStudy(req):
     return render(req, 'bible.html',{})
+
+def admin_page(req):
+    return render(req, 'admin_page.html',{})
+
+def all_events(req):
+    event_list = Event.objects.all().order_by('event_date')
+    return render(req,'events/all_events.html', {
+        'event_list': event_list
+    })
+
+def update_event(request, event_id):
+	event = Event.objects.get(pk=event_id)
+	"""if request.user.is_superuser:
+		form = EventFormAdmin(request.POST or None, instance=event)	
+	else:
+		form = EventForm(request.POST or None, instance=event)"""
+	form = EventForm(request.POST or None, instance=event)
+	if form.is_valid():
+		form.save()
+		return redirect('all_events')
+
+	return render(request, 'events/update_event.html', 
+		{
+            'event': event,
+		    'form':form
+        })
+
+def delete_event(req,event_id):
+    event = Event.objects.get(pk=event_id)
+    if req.user == event.manager:
+        event.delete()
+        messages.success(req, ("Event Deleted Successfully!!"))
+        return redirect('all_events')
+    else:
+        messages.success(req, 'You are not Authorized To Delete selected Event')
+        return redirect('all_events')
+    
+def add_event(req):
+    submitted = False
+
+    if req.method == 'POST':
+        if req.user.is_superuser:
+            form = AdminEventForm(req.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/add_event?submitted=True')
+        else:
+            form = EventForm(req.POST)
+            if form.is_valid():
+                #form.save()
+                event = form.save(commit=False)
+                event.manager = req.user
+                event.save()
+                return HttpResponseRedirect('/add_event?submitted=True')    
+    else:
+        # Not Submitted
+        if req.user.is_superuser:
+            form = AdminEventForm()
+        else:
+            form = EventForm()    
+        if 'submitted' in req.GET:
+            submitted = True
+    return render(req, 'events/add_event.html', {'form':form, 'submitted': submitted})
+
 
 def generate_qr_code(req):
     file_path = 'static/website/img/core-img/qrcodeimg.jpg'
