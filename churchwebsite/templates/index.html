@@ -5,69 +5,39 @@
 {% load static %}
 
   <main>
- 
-    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-interval="10000" style="background-color: #f0ebf8;">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="{% static 'website/img/carousel/timiket.jpg' %}" class="d-block r-img w-100 img-fluid" alt="timiket celebration event">
-  
-          <div class="container">
-            <div class="carousel-caption text-start">
-              <h1>የኢትዮጵያ የጥምቀት በዓል አከባበር</h1>
-              <p>Timkat, also known as Timket, is when the Ethiopian Orthodox church celebrates epiphany. It is when they celebrate the baptism of Christ in the River Jordan.</p>
-              <p><a class="bd-placeholder-img"  class="btn btn-lg btn-primary" href="#">See more details</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{% static 'website/img/carousel/meskel.jpg' %}" class="d-block r-img w-100 img-fluid" alt="...">
-  
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>የኢትዮጵያ የመስቀል በዓል አከባበር</h1>
-              <p>Meskel is a Christian holiday in the Ethiopian Orthodox Tewahdo Churches that commemorates the discovery of the True Cross by<strong>the Roman Empress Helena</strong> in the fourth century.</p>
-              <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{% static 'website/img/carousel/fasika.jpg' %}" class="d-block r-img w-100 img-fluid" alt="...">
-  
-          <div class="container">
-            <div class="carousel-caption text-end">
-              <h1>የኢትዮጵያ ፋሲካ በዓል አከባበር</h1>
-              <p><strong>"Fasika"</strong> is the Amharic word for Easter,and refers to the 55-days where Ethiopians celebrate their most important festival of the year. Which celebrates the death and resurrection of <strong>Jesus Christ</strong>.</p>
-              <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-            </div>
-          </div>
-        </div>
 
-        <div class="carousel-item">
-          <img src="{% static 'website/img/carousel/gena.jpg' %}" class="d-block r-img w-100 img-fluid" alt="...">
-
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>የኢትዮጵያ የገና በዓል አከባበር</h1>
-            <p>Ethiopian Orthodox Tewahedo Church celebrates Christmas on January 7th. The Ethiopian Calendar has different months - and Christmas in on the 29th of Tahsas. Many other orthodox churches around the world also celebrate Christmas on the 7th January.</p>
-            <p><a class="btn btn-lg btn-primary" href="https://www.whychristmas.com/cultures/ethiopia" target="_blank">Browse gallery</a></p>
-          </div>
-        </div>
+      <div id="CarouselWithControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+        {% for item in data %}
+            {% if forloop.first %}
+              <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <h2 class="text-center">{{ item.title }}</h2>
+                <img src="{{ item.img_path }}{{ item.name }}" class="d-block w-100"/>
+                  <div class="carousel-caption d-none d-sm-block">
+                    <p class="">{{ item.body }}</p>
+                  </div>
+              </div>
+              
+            {% else %}
+              <div class="carousel-item">
+                <h2 class="text-center">{{ item.title }}</h2>
+                <img src="{{ item.img_path }}{{ item.name }}" class="d-block w-100">
+                  <div class="carousel-caption d-none d-sm-block">
+                    <p>{{ item.body }}</p>
+                  </div>
+              </div>
+              
+            {% endif %}
+        <a class="carousel-control-prev" href="#CarouselWithControls" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#CarouselWithControls" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        {% endfor %}
       </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
   
 

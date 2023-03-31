@@ -1,4 +1,6 @@
-from .models import Event
+import json
+#from unicode import unicode
+from .models import Event, ImageDate
 from django.shortcuts import render, redirect
 from datetime import date
 from django.core.mail import send_mail
@@ -8,6 +10,7 @@ from churchwebsite.forms import AdminEventForm, EventForm
 from .smtplib import ContactForm
 import qrcode
 import os
+import codecs
 from PIL import ImageDraw
 from PIL import ImageFont
 from PIL import Image
@@ -18,7 +21,13 @@ from django.contrib.auth.models import User
 
 def index(req):
     todayYear = date.today().year
-    return render(req,'index.html', {'year':todayYear})
+    filePath = 'static/website/json/img_path.json'
+    with codecs.open(filePath,'r',encoding='utf-8', errors='strict') as image_file:  
+        data = json.load(image_file)
+    return render(req,'index.html', {
+        'year':todayYear,
+        'data':data
+        })
 
 def about(req):
     return render(req,'about.html', {})

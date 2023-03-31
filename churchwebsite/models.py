@@ -9,6 +9,16 @@ class Service(models.Model):
     
     def __str__(self):
         return self.title
+    
+class ImageDate(models.Model):
+    image = models.ImageField(upload_to='website/img/carousel/', blank=True, null=True)
+    header = models.CharField(max_length=120)
+    body = models.TextField(max_length=255,blank = False)
+    external_Llink = models.URLField('Website Address', blank=True)
+
+    def __str__(self):
+        return self.header
+
 
 class Location(models.Model):
     name = models.CharField('Location Name',max_length=120)
