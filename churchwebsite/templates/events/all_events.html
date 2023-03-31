@@ -8,37 +8,40 @@
         <p class="lead">Currently there are no any event available</p>
     {% else %}
         {% for event in event_list %}
-        <div class="card" style="width: 75% !important;">
-            <div class="card-header" style="color: blue;">
-                {{ event }}
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Location: {{ event.location }}</h5>
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action">Date: {{ event.event_date }}</li>
-                    <li class="list-group-item list-group-item-action">Days Till Event: {{ event.Days_Till }}</li>
-                    <li class="list-group-item list-group-item-action">Description:  {{ event.description}}</li>
-                    <li class="list-group-item list-group-item-action">Confirmed: {% if event.approved %} Yes {% else %}  Not Yet  {% endif %}</li>
-                    <li class="list-group-item list-group-item-action">Attendees: {{event.attendees}}</li>
-                </ul>
-            </div>
-        {% if user.is_authenticated %}
-            {% if user == event.manager %}
-            <div class="card-footer text-muted">
+            {% if event.approved %}
+                <div class="card">
+                    <div class="card-header" style="color: blue;">
+                        {{ event }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Location: {{ event.location }}</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-action">Date: {{ event.event_date }}</li>
+                            <li class="list-group-item list-group-item-action">Days Till Event: {{ event.Days_Till }}</li>
+                            <li class="list-group-item list-group-item-action">Description:  {{ event.description}}</li>
+                            <li class="list-group-item list-group-item-action">Confirmed: {% if event.approved %} Yes {% else %}  Not Yet  {% endif %}</li>
+                            <li class="list-group-item list-group-item-action">Attendees: {{event.attendees}}</li>
+                        </ul>
+                    </div>
+                {% if user.is_authenticated %}
+                    {% if user == event.manager %}
+                    <div class="card-footer text-muted">
+                        
+                        <a href="{% url 'update_event' event.id %}" style="color: blue;" class="btn btn-outline-secondary btn-sm">Update Event</a>
+                        <a href="{% url 'delete_event' event.id %}" class="btn btn-outline-danger btn-sm">Delete Event</a>
+                        
+                        
+                    </div>
+                    {% endif %}  
+            {% endif %}
                 
-                <a href="{% url 'update_event' event.id %}" style="color: blue;" class="btn btn-outline-secondary btn-sm">Update Event</a>
-                <a href="{% url 'delete_event' event.id %}" class="btn btn-outline-danger btn-sm">Delete Event</a>
-                
-                
-            </div>
-            {% endif %}  
-    {% endif %}
-        
-        </div>
-        <hr class="featurette-divider" style="width: 75% !important;">
+                </div>
+                <hr class="featurette-divider" style="width: 75% !important;">
+            {% endif %}
+            
         {% endfor %}
-   
-   
+    
+            
     {% endif %}
     </div>
 </section>

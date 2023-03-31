@@ -7,16 +7,32 @@
 <section class="vh-100" style="background-color: #f0ebf8;">
     <div class="container py-5 h-100">
         {% if user.is_authenticated %}
-            <div class="card">
-                <div class="card-header" style="text-align: center;">
-                    QR Code Generator
-                </div>
-                <div class="card-body">
-                <p class="card-text">You can generate church website qr code using below button and it will automatically <strong>Download</strong> in your local computer and then got to your download location and then you can print out.</p>
-                <a class="btn btn-primary" href="{% url 'qrcode' %}">Generate Church Website QR Code</a>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" style="text-align: center;">
+                        QR Code Generator
+                    </div>
+                    <div class="card-body">
+                    <p class="card-text">You can generate church website qr code using below button and it will automatically <strong>Download</strong> in your local computer and then got to your download location and then you can print out.</p>
+                    <a class="btn btn-primary" href="{% url 'qrcode' %}">Generate Church Website QR Code</a>
+                    </div>
                 </div>
             </div>
-            <hr class="featurette-divider">
+            <div class="col-md-6 col-sl-6">
+                <div class="card">
+                    <div class="card-header" style="text-align: center;">
+                        Make Active Upcomeing Event
+                    </div>
+                    <div class="card-body">
+                    <p class="card-text"><strong>Administrator</strong> user can approve upcoming events, unapproved any events, delete and update all available events in the approval page event lists. Please be responsible.</p>
+                    <a class="btn btn-primary" href="{% url 'event_approval' %}">Approve Upcoming Events</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            
             <hr class="featurette-divider">
             <div class="container">
                 <fieldset class="border rounded-3 p-3">

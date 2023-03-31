@@ -55,8 +55,14 @@
               </a>
               <ul class="dropdown-menu">            
                   <li><a class="dropdown-item" href="{% url 'register_user' %}" >Register User</a></li>
-                  <li><a class="dropdown-item" href="{% url 'add_event' %}" >Add Events </a></li>                 
-                  <li><a class="dropdown-item" href="{% url 'admin_page' %}" >Manage Pages </a></li> 
+                  <li><a class="dropdown-item" href="{% url 'add_event' %}" >Add Events </a></li> 
+                  {% if user.is_superuser %}
+                      <li class="nav-item">
+                        <a class="dropdown-item" href="{% url 'admin_page' %}">Admin Page</a>
+                     </li>
+                
+                 {% endif %}                
+                  
               </ul>
           </li>
               <li class="nav-item">

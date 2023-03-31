@@ -12,10 +12,10 @@ from PIL import ImageDraw
 from PIL import ImageFont
 from PIL import Image
 from django.http import HttpResponseRedirect
-#import requests
-#import urllib
-# import matplotlib.font_manager as fm
+# Import User Model From Django
+from django.contrib.auth.models import User
 # Create your views here.
+
 def index(req):
     todayYear = date.today().year
     return render(req,'index.html', {'year':todayYear})
@@ -129,6 +129,42 @@ def add_event(req):
             submitted = True
     return render(req, 'events/add_event.html', {'form':form, 'submitted': submitted})
 
+# Create Admin Event Approval Page
+def admin_event_approval(req):
+	# Get Counts
+    event_count = Event.objects.all().count()
+    user_count = User.objects.all().count()
+        
+    event_list = Event.objects.all().order_by('-event_date')
+
+    if req.user.is_superuser:
+
+        if req.method == 'POST':
+            # set up list of checked box id's
+            id_list = req.POST.getlist('boxes')
+
+            # unckecked 
+            event_list.update(approved = False)
+
+            # update backend database
+
+            for id in id_list:
+                event_list.filter(pk = int(id)).update(approved = True)
+            # Show Success Message and Redirect
+            messages.success(req,('Approvel has been updated successfully!'))
+            return redirect('all_events')
+        else:
+            return render(req,'events/event_approval.html',{
+                'event_list': event_list,
+                'event_count': event_count,
+                'user_count': user_count
+            })
+    else:
+        messages.success(req,("You are not authorized to view this page!"))
+        return redirect('index')
+    
+    #return render(req,'events/event_approval.html')
+       
 
 def generate_qr_code(req):
     file_path = 'static/website/img/core-img/qrcodeimg.jpg'

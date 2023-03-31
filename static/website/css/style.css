@@ -1,5 +1,5 @@
-h3 {
-    color: blue;
+h2 {
+    text-align: center;
     align-items: center;
 }
 .logo{
@@ -16,6 +16,9 @@ h3 {
 }
 li {
     list-style: none;
+}
+.admin-update{
+    margin-left: 20px;
 }
 #accordionPanelsStayOpenExample{
     width: 75%;
@@ -79,7 +82,10 @@ li {
         font-size: 24px !important;
     }
     .card{
-        width: 18rem !important;
-        margin-left: 25px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .vh-100 {
+        height: auto !important;
     }
   }
