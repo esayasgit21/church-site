@@ -25,7 +25,7 @@ body {
   /* Declare heights because of positioning of img element */
   
   .carousel-item {
-    height: 50rem;
+    /*height: 50rem;*/
   }
   .carousel-inner{
     margin-top: 10px !important;
@@ -77,7 +77,9 @@ body {
       font-size: 1.25rem;
       line-height: 1.4;
     }
-  
+    .carousel-item {
+       height: auto !important;
+      }
     .featurette-heading {
       font-size: 50px;
     }
@@ -91,5 +93,8 @@ body {
     .featurette-heading {
       margin-top: 7rem;
     }
+    .carousel-item {
+      height: auto !important;
+     }
   }
   

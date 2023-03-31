@@ -12,7 +12,7 @@
             {% if forloop.first %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <h2 class="text-center">{{ item.title }}</h2>
-                <img src="{{ item.img_path }}{{ item.name }}" class="d-block w-100"/>
+                <img src="{{ item.img_path }}{{ item.name }}" class="d-block w-100" alt="{{ item.name }}" title="{{ item.title }}">
                   <div class="carousel-caption d-none d-sm-block">
                     <p class="">{{ item.body }}</p>
                   </div>
@@ -21,7 +21,7 @@
             {% else %}
               <div class="carousel-item">
                 <h2 class="text-center">{{ item.title }}</h2>
-                <img src="{{ item.img_path }}{{ item.name }}" class="d-block w-100">
+                <img src="{{ item.img_path }}{{ item.name }}" class="d-block w-100" alt="{{ item.name }}" title="{{ item.title }}">
                   <div class="carousel-caption d-none d-sm-block">
                     <p>{{ item.body }}</p>
                   </div>
