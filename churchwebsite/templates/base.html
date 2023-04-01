@@ -80,7 +80,6 @@
       <div class="container py-5 h-100">
             {% if messages %}
             {% for message in messages%}
-             
               <div style="margin-top: 20px;" class="alert alert-warning alert-dismissible fade show" role="alert">
                 {{message}}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -89,12 +88,11 @@
           {% endif %}
     
   {% block content %}
-             
   {% endblock %}
   
-    <footer class="footer mt-auto py-3 bg-light">
+    <footer class="footer mt-auto py-3 bg-light text-center">
       <p class="float-end"><a href="#">Back to top</a></p>
-      <p>&copy; 2022 – {{ year }} Ethiopian Orthodox Tewahdo Church. <a href="#" target="_blank">Follow Us</a> &middot; <a href="{% url 'bylaw' %}">Bylaw</a></p>
+      <p class="">&copy; 2022 – {{ year }} Ethiopian Orthodox Tewahdo Church. <a href="#" target="_blank">Follow Us</a> &middot; <a href="{% url 'bylaw' %}">Bylaw</a></p>
     </footer>
     <script src="{% static 'website/js/bootstrap.bundle.min.js' %}" type=""></script>
 
