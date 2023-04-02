@@ -76,7 +76,24 @@ def bibleStudy(req):
     return render(req, 'bible.html',{})
 
 def admin_page(req):
-    return render(req, 'admin_page.html',{})
+    filePath = 'static/website/json/img_path.json'
+    with codecs.open(filePath,'r',encoding='utf-8', errors='strict') as image_file:  
+        data = json.load(image_file)
+    return render(req,'admin_page.html', {
+        'data':data
+        })
+
+def delete_image(req,file_name):
+    path = 'static/website/img/carousel/' + file_name
+    print(path)
+    if req.user.is_superuser:
+        messages.success(req, ("Image Deleted Successfully!!"))
+        return redirect('admin_page.html')
+    else:
+        messages.success(req, 'You are not Authorized To Remove selected Image')
+        return redirect('admin_page.html')
+
+
 
 def all_events(req):
     event_list = Event.objects.all().order_by('event_date')

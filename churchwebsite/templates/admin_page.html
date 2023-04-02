@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 {% load static %}
 <section class="vh-100" style="background-color: #f0ebf8;">
     <div class="container py-5 h-100">
@@ -40,25 +39,35 @@
                     <legend class="float-none w-auto px-3">Upload or Edit Images</legend>
                     <br/>
 
-                    <div class="container text-center mb-5 mt-5">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4><a href="https://plugins.krajee.com/file-input" target="_blank"><b>File Upload With Sortable, Remove Options</b></a></h4>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">File Name</th>
+                            <th scope="col">Full Path</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data %}
+                              <tr>
+                                <td>{{ item.title }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.img_path }}</td>
+                                  <td>
+                                 
+                                  <div class="form-check">
+                                    <a href="{% url 'delete_image' item.name %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                                  </div>
+                                  
+                                </td>
+                            </tr>
+                         {% endfor %}   
+        
+                        </tbody>
+                    </table>
                     
-                    <section class="bg-diffrent">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8">
-                                    <div class="file-upload-contain">
-                                        <input id="multiplefileupload" type="file" accept=".jpg,.gif,.png" multiple />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    
 
                 <br/><br/>	
                 </fieldset>

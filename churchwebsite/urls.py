@@ -17,6 +17,6 @@ urlpatterns = [
     path('update_event/<event_id>',views.update_event,name='update_event'),
     path('delete_event/<event_id>', views.delete_event, name='delete_event'),
     path('generate_qr_code',views.generate_qr_code,name='qrcode'),
-    #
+    path('delete_image/<file_name>', views.delete_image, name='delete_image'),
     path('event_approval',views.admin_event_approval,name='event_approval'),
 ]
