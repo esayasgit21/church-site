@@ -9,7 +9,7 @@ from django.contrib import messages
 from churchwebsite.forms import AdminEventForm, EventForm
 from .smtplib import ContactForm
 import qrcode
-import os
+from os import path
 import codecs
 from PIL import ImageDraw
 from PIL import ImageFont
@@ -76,22 +76,62 @@ def bibleStudy(req):
     return render(req, 'bible.html',{})
 
 def admin_page(req):
-    filePath = 'static/website/json/img_path.json'
-    with codecs.open(filePath,'r',encoding='utf-8', errors='strict') as image_file:  
-        data = json.load(image_file)
+    data = loda_jsonData()
     return render(req,'admin_page.html', {
         'data':data
         })
 
+def select_data(data, path, filename):
+    path = ''
+    i= 0
+    for i in range(len(data)):
+        ele_path = data[i]['img_path']
+        ele_name = data[i]['name']
+        print(f'ele_name {ele_name} {ele_path}')
+        if path == ele_path and ele_name == filename:
+            return i
+    i = i + 1
+
+def loda_jsonData():
+    # Check if file exists
+    filePath = 'static/website/json/img_path.json'
+    if path.isfile(filePath) is False:
+        raise Exception("File not found")
+
+    with codecs.open(filePath,'r',encoding='utf-8', errors='strict') as image_file:  
+        data = json.load(image_file)
+    return data 
+
+def write_json(new_data, filename='data.json'):
+    y =   {
+        "name":"gena2.jpg",
+        "title":"It is Test data",
+        "body":"Ethiopian Orthodox Tewahedo Church celebrates Christmas on January 7th. The Ethiopian Calendar has different months - and Christmas in on the 29th of Tahsas. Many other orthodox churches around the world also celebrate Christmas on the 7th January.",
+        "img_path":"static/website/img/carousel/",
+        "external_Llink":"https://test.com"
+        }
+    with open('static/website/json/img_path.json','r+',encoding='utf-8', errors='strict') as file:
+        # First we load existing data into a dict.
+        file_data = json.load(file)
+        # Join new_data with file_data inside emp_details
+        file_data[0].append(y)
+        # Sets file's current position at offset.
+        file.seek(0)
+        # convert back to json.
+        json.dump(file_data, file, indent = 4)
+
 def delete_image(req,file_name):
-    path = 'static/website/img/carousel/' + file_name
-    print(path)
+    path = 'static/website/img/carousel/'
     if req.user.is_superuser:
+        data = loda_jsonData()
+        selectedItem= select_data(data, path, file_name )
+        
+        write_json('z','z')
         messages.success(req, ("Image Deleted Successfully!!"))
-        return redirect('admin_page.html')
+        return redirect('admin_page')
     else:
         messages.success(req, 'You are not Authorized To Remove selected Image')
-        return redirect('admin_page.html')
+        return redirect('login')
 
 
 
