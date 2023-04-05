@@ -1,15 +1,16 @@
 import json
 #from unicode import unicode
-from .models import Event, ImageDate
+from .models import Event, ImageData
 from django.shortcuts import render, redirect
 from datetime import date
 from django.core.mail import send_mail
 from django.http import BadHeaderError, FileResponse, HttpRequest, HttpResponse
 from django.contrib import messages
-from churchwebsite.forms import AdminEventForm, EventForm
+from churchwebsite.forms import AdminEventForm, EventForm, ImageForm
 from .smtplib import ContactForm
 import qrcode
 from os import path
+import os
 import codecs
 from PIL import ImageDraw
 from PIL import ImageFont
@@ -76,13 +77,40 @@ def bibleStudy(req):
     return render(req, 'bible.html',{})
 
 def admin_page(req):
+    submitted = False
     data = loda_jsonData()
+    count = len(data[0])
+    if req.method == 'POST':
+        form = ImageForm(req.POST, req.FILES)
+        if len(req.FILES) !=0 :
+
+            uploaded_file = req.FILES.get('image',False)
+            if form.is_valid:
+                body  = {
+                    'name' :   uploaded_file.name,  
+                    'title' :  req.POST.get('title',False),
+                    'body' : req.POST.get('body',False),  
+                    'img_path' : 'media/img/' ,
+                    'web_link': req.POST.get('web_link',False),                                
+                }
+                write_json(body)
+                form.save()
+            # save file into json and upload image
+                return HttpResponseRedirect('admin_page?submitted=True') 
+    else:
+        form = ImageForm
+        print(f'form {form}')
+        if 'submitted' in req.GET:
+            submitted = True
+
     return render(req,'admin_page.html', {
-        'data':data
-        })
+                'data': data,
+                'form': form,
+                'submitted' : submitted,
+                'count' : count
+                })
 
 def select_data(data, path, filename):
-    path = ''
     i= 0
     for i in range(len(data)):
         ele_path = data[i]['img_path']
@@ -102,31 +130,29 @@ def loda_jsonData():
         data = json.load(image_file)
     return data 
 
-def write_json(new_data, filename='data.json'):
-    y =   {
-        "name":"gena2.jpg",
-        "title":"It is Test data",
-        "body":"Ethiopian Orthodox Tewahedo Church celebrates Christmas on January 7th. The Ethiopian Calendar has different months - and Christmas in on the 29th of Tahsas. Many other orthodox churches around the world also celebrate Christmas on the 7th January.",
-        "img_path":"static/website/img/carousel/",
-        "external_Llink":"https://test.com"
-        }
+def write_json(new_data):
     with open('static/website/json/img_path.json','r+',encoding='utf-8', errors='strict') as file:
         # First we load existing data into a dict.
         file_data = json.load(file)
         # Join new_data with file_data inside emp_details
-        file_data[0].append(y)
+        file_data.append(new_data)
         # Sets file's current position at offset.
         file.seek(0)
         # convert back to json.
         json.dump(file_data, file, indent = 4)
 
 def delete_image(req,file_name):
-    path = 'static/website/img/carousel/'
+    path_local = 'media/img/'
     if req.user.is_superuser:
         data = loda_jsonData()
-        selectedItem= select_data(data, path, file_name )
-        
-        write_json('z','z')
+        index = select_data(data, path_local, file_name )
+        del(data[index])
+        if index >=0:
+            os.remove(path_local + file_name)
+
+        with open("static/website/json/img_path.json", 'w') as data_file:
+            data = json.dump(data, data_file, indent=4, sort_keys=True)
+
         messages.success(req, ("Image Deleted Successfully!!"))
         return redirect('admin_page')
     else:
@@ -155,7 +181,7 @@ def update_event(request, event_id):
 	return render(request, 'events/update_event.html', 
 		{
             'event': event,
-		    'form':form
+            'form':form
         })
 
 def delete_event(req,event_id):
@@ -230,12 +256,11 @@ def admin_event_approval(req):
         return redirect('index')
     
     #return render(req,'events/event_approval.html')
-       
 
 def generate_qr_code(req):
     file_path = 'static/website/img/core-img/qrcodeimg.jpg'
     generatewd_file_path = 'static/website/img/core-img/churchwebsiteQrcode.png'
-    file_exists = os.path.exists(generatewd_file_path)
+    file_exists = path.exists(generatewd_file_path)
     if file_exists is True:
         return FileResponse(open(generatewd_file_path, 'rb'),as_attachment=True,filename=generatewd_file_path) 
     else:

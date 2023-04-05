@@ -1,7 +1,7 @@
 # Super user event form
 from django import forms
 from django.forms import ModelForm
-from .models import Event
+from .models import Event, ImageData
 
 # Admin SuperUser Event Form
 class AdminEventForm(ModelForm):
@@ -25,6 +25,21 @@ class AdminEventForm(ModelForm):
 			'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
 		}
 
+class ImageForm(ModelForm):
+	class Meta:
+		model = ImageData
+		fields = ('title', 'body', 'image','web_link')
+		labels = {
+			"title":'',
+			"body" : '',
+			"image" : '',
+			'web_link': '',
+		}
+		widgets = {
+			'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Image Title'}),
+			'body': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+			'web_link': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Web Address'}),
+		}
 
 # User Event Form
 class EventForm(ModelForm):
