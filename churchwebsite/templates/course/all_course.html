@@ -2,16 +2,18 @@
 
 {% block content %}
 	
-	<h1>Course...</h1>
+	<h2>Available Course List</h2>
 <br/>
 <table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
-			<th scope="col">Course Name</th>
+			<th scope="col">Subject</th>
 			<th scope="col">Website Address</th>
 			<th class="d-none d-sm-block" scope="col">Description</th>
 			<th  scope="col">File</th>
+			{% if user.is_authenticated %}
 			<th  scope="col">Action</th>
+			{% endif %}
         </tr>
     </thead>
     <tbody>
