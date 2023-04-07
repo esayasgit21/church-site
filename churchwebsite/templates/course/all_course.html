@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+	<h1>Course...</h1>
+<br/>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+			<th scope="col">Course Name</th>
+			<th scope="col">Website Address</th>
+			<th class="d-none d-sm-block" scope="col">Description</th>
+			<th  scope="col">File</th>
+			<th  scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in course_list %}
+		<tr>
+            <td class="col-md-2">
+				{{ course.subject }}
+			</td>
+            <td class="col-md-3">
+				<a href="{{ course.web_link }}" target="_blank">{{ course.web_link }}</a>
+			</td>
+            <td class="d-none d-md-block text-wrap">
+				{{ course.description }}
+			</td>
+			<td class="col-md-1">
+				<a href="{% url 'download_file' course.id %}">Download</a>
+			</td>
+			{% if user.is_authenticated %}
+			<td class="col-md-2">
+				<a href="{% url 'update_course' course.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
+
+				<a href="{% url 'delete_course' course.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+			</td>
+			{% endif %}
+		</tr>
+	{% endfor %}
+
+</tbody>
+</table>
+{% endblock %}

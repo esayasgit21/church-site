@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% load static %}
+<section class="" style="background-color: #f0ebf8;">
+    <div class="container py-5 h-100">
+        {% if user.is_authenticated %}
+            
+            <div class="container">
+                <fieldset class="border rounded-3 p-3">
+                
+                    <legend class="float-none w-auto px-3">Upload Available Course</legend>
+                    <br/>
+
+                {% if submitted %}
+
+                <div class="alert alert-success" role="alert">
+                    Your Course Was Submitted Succefully!!!
+                </div>
+                <br/>
+                <a href="{% url 'add_course' %}">Add More Course</a>
+                        
+
+                    {% else %}
+
+                        <form action="" method='POST' enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            {{ form.as_p }}
+
+                            <input type="submit" value="Submit" class="btn btn-secondary">
+
+                        </form>
+                {% endif %}
+
+                <br/><br/>	
+                </fieldset>
+            </div>
+
+        {% else %}
+        <h1>Sorry! You Must Be Logged In To View This Page...</h1>
+
+        <a href="{% url 'login' %}">Login Here</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

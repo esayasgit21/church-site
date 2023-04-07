@@ -1,7 +1,7 @@
 # Super user event form
 from django import forms
 from django.forms import ModelForm
-from .models import Event, ImageData
+from .models import Course, Event, ImageData
 
 # Admin SuperUser Event Form
 class AdminEventForm(ModelForm):
@@ -37,9 +37,37 @@ class ImageForm(ModelForm):
 		}
 		widgets = {
 			'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Image Title'}),
-			'body': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+			'body': forms.Textarea(attrs={'rows':4, 'cols':15, 'class':'form-control', 'placeholder':'Description'}),
 			'web_link': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Web Address'}),
 		}
+
+# Course regestration
+
+GRADE_CHOICES= [
+    ('one', 'First Grade'),
+    ('two', 'Second Grade'),
+    ('three', 'Third Grade'),
+    ('decon', 'Decon'),
+    ]
+
+class CourseForm(ModelForm):
+	class Meta:
+		model = Course
+		fields = ('subject', 'web_link', 'grade','description','image')
+		labels = {
+			"subject":'',
+			'web_link': '',
+			'grade' : '',
+			"description" : '',
+			"image" : '',
+			
+		}
+		widgets = {
+			'subject': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Subject'}),
+			'web_link': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Web Address'}),
+			'grade': forms.Select(choices = GRADE_CHOICES, attrs={'class':'form-select', 'placeholder':'Student Grade'}),
+			'description': forms.Textarea(attrs={'rows':4, 'class':'form-control', 'placeholder':'Description'}),
+		}	
 
 # User Event Form
 class EventForm(ModelForm):

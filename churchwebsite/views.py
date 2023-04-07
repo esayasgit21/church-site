@@ -1,15 +1,18 @@
 import json
+
+from django.conf import settings
 #from unicode import unicode
-from .models import Event, ImageData
-from django.shortcuts import render, redirect
+from .models import Course, Event, ImageData
+from django.shortcuts import render, redirect, get_object_or_404
 from datetime import date
 from django.core.mail import send_mail
-from django.http import BadHeaderError, FileResponse, HttpRequest, HttpResponse
+from django.http import BadHeaderError, FileResponse, Http404, HttpResponse
 from django.contrib import messages
-from churchwebsite.forms import AdminEventForm, EventForm, ImageForm
+from churchwebsite.forms import AdminEventForm, CourseForm, EventForm, ImageForm
 from .smtplib import ContactForm
 import qrcode
 from os import path
+import mimetypes
 import os
 import codecs
 from PIL import ImageDraw
@@ -82,7 +85,7 @@ def admin_page(req):
     count = len(data[0])
     if req.method == 'POST':
         form = ImageForm(req.POST, req.FILES)
-        if len(req.FILES) !=0 :
+        if len(req.FILES) != 0 :
 
             uploaded_file = req.FILES.get('image',False)
             if form.is_valid:
@@ -99,7 +102,6 @@ def admin_page(req):
                 return HttpResponseRedirect('admin_page?submitted=True') 
     else:
         form = ImageForm
-        print(f'form {form}')
         if 'submitted' in req.GET:
             submitted = True
 
@@ -115,7 +117,6 @@ def select_data(data, path, filename):
     for i in range(len(data)):
         ele_path = data[i]['img_path']
         ele_name = data[i]['name']
-        print(f'ele_name {ele_name} {ele_path}')
         if path == ele_path and ele_name == filename:
             return i
     i = i + 1
@@ -159,13 +160,20 @@ def delete_image(req,file_name):
         messages.success(req, 'You are not Authorized To Remove selected Image')
         return redirect('login')
 
-
-
 def all_events(req):
     event_list = Event.objects.all().order_by('event_date')
     return render(req,'events/all_events.html', {
         'event_list': event_list
     })
+
+def all_course(req):
+    course_list = Course.objects.all().order_by('subject')
+    return render(req,'course/all_course.html',
+        {
+            'course_list': course_list
+        
+        })
+
 
 def update_event(request, event_id):
 	event = Event.objects.get(pk=event_id)
@@ -184,6 +192,30 @@ def update_event(request, event_id):
             'form':form
         })
 
+def update_course(req, course_id):
+    course = Course.objects.get(pk=course_id)
+    form = CourseForm(req.POST or None, instance=course)
+
+    if form.is_valid():
+        form.save()
+        return redirect('all_course')
+
+    return render(req, 'course/update_course.html', 
+		{
+            'course': course,
+            'form':form
+        })
+
+def delete_course(req,course_id):
+    course = Course.objects.get(pk=course_id)
+    if req.user != "course.manager":
+        course.delete()
+        messages.success(req, ("Course Deleted Successfully!!"))
+        return redirect('all_course')
+    else:
+        messages.success(req, 'You are not Authorized To Delete selected Course')
+        return redirect('all_course')
+
 def delete_event(req,event_id):
     event = Event.objects.get(pk=event_id)
     if req.user == event.manager:
@@ -194,6 +226,27 @@ def delete_event(req,event_id):
         messages.success(req, 'You are not Authorized To Delete selected Event')
         return redirect('all_events')
     
+def add_course(req):
+    submitted = False
+    if req.method == 'POST':
+        form = CourseForm(req.POST, req.FILES)
+        print(f'form {req.user}')
+        if form.is_valid():
+            course = form.save()
+            course.manager = req.user
+            course.save()
+            #form.save()
+        return HttpResponseRedirect('/add_course?submitted=True')
+    else:
+        form = CourseForm()    
+        if 'submitted' in req.GET:
+            submitted = True
+    return render(req, 'course/add_course.html', 
+        {
+        'form':form, 
+        'submitted': submitted
+        })
+
 def add_event(req):
     submitted = False
 
@@ -280,3 +333,25 @@ def generate_qr_code(req):
         file_name = generatewd_file_path
         img_bg.save(file_name)
         return FileResponse(open(file_name, 'rb'),as_attachment=True,filename=file_name)
+    
+
+# download course
+
+def download_file(req, course_id):
+    # fill these variables with real values
+    file = get_object_or_404(Course,pk=course_id)
+    path = '/media/course'
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    print(f'file_path{file_path}')
+    mime_type, _ = mimetypes.guess_type(file_path)
+    response = HttpResponse(file.image, content_type=mime_type)
+    response['Content-Disposition'] = f'attachment; filename="{file.image.name}"'
+    return response
+    """if os.path.exists(file_path):
+
+        #filename =  req.FILES.get('image',False).name
+        mime_type, _ = mimetypes.guess_type(file_path)
+        response = HttpResponse(file.image, content_type=mime_type)
+        response['Content-Disposition'] = f'attachment; filename="{file.image.name}"'
+        return response
+    raise Http404"""

@@ -7,7 +7,7 @@
     <div class="container py-5 h-100">
         {% if user.is_authenticated %}
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4 col-sl-6">
                 <div class="card">
                     <div class="card-header" style="text-align: center;">
                         QR Code Generator
@@ -18,14 +18,25 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 col-sl-6">
+                <div class="card">
+                    <div class="card-header" style="text-align: center;">
+                        Manage School Course
+                    </div>
+                    <div class="card-body">
+                    <p class="card-text"><strong>Church School Teachers</strong> can upload or remove or update learning material with respect to his or her assigned course in the Manage Course page. Please be responsible!</p>
+                    <a class="btn btn-primary" href="{% url 'add_course' %}">Manage School Course</a>
+                    </div>
+                </div>
+            </div>
             {% if user.is_superuser %}
-            <div class="col-md-6 col-sl-6">
+            <div class="col-md-4 col-sl-6">
                 <div class="card">
                     <div class="card-header" style="text-align: center;">
                         Make Active Upcomeing Event
                     </div>
                     <div class="card-body">
-                    <p class="card-text"><strong>Administrator</strong> user can approve upcoming events, unapproved any events, delete and update all available events in the approval page event lists. Please be responsible.</p>
+                    <p class="card-text"><strong>Administrator</strong> can approve upcoming events or unapproved active events, delete and update all available events from the approval page event lists. Please be responsible!.</p>
                     <a class="btn btn-primary" href="{% url 'event_approval' %}">Approve Upcoming Events</a>
                     </div>
                 </div>
@@ -45,7 +56,7 @@
                           <tr>
                             <th scope="col">Title</th>
                             <th scope="col">File Name</th>
-                            <th class="d-sm-none d-md-block" scope="col">Full Path</th>
+                            <th class="d-none d-sm-block" scope="col">Full Path</th>
                             <th  scope="col">Action</th>
                           </tr>
                         </thead>
@@ -54,7 +65,7 @@
                               <tr>
                                 <td>{{ item.title }}</td>
                                 <td>{{ item.name }}</td>
-                                <td class="d-sm-none d-md-block">{{ item.img_path }}</td>
+                                <td class="d-none d-sm-block">{{ item.img_path }}</td>
                                   <td>
                                  
                                   <div class="form-check">

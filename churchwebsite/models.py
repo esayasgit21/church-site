@@ -38,6 +38,16 @@ class churchUser(models.Model):
 
     def __str__(self):
         return self.first_name + ',' + self.last_name
+    
+class Course(models.Model):
+    subject = models.CharField('Course Name',max_length=120)
+    web_link = models.URLField('Website Address', blank = True)
+    grade = models.CharField('Grade',max_length=40)
+    description = models.TextField(blank = True)
+    image = models.FileField(upload_to='course/', blank = True, null = True)
+    #manager = models.ForeignKey(User, blank=True,null=True, on_delete=models.SET_NULL)
+    def __str__(self):
+        return self.subject
 
 class Event(models.Model):
     name = models.CharField('Event Name',max_length=120)
