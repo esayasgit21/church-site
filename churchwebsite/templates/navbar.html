@@ -37,14 +37,14 @@
                   Support
                 </a>
                 <ul class="dropdown-menu">
-                   
-                     <li class="nav-item">
+                
+                  <li class="nav-item">
                       <a class="dropdown-item" href="https://www.paypal.com/donate/?hosted_button_id=XZNFU8XV5EE2L" target="_blank">Donate (መለገስ)</a>
                     </li>
                     <li><a class="dropdown-item" href="#">Vow (ስለት) </a></li>
                     <li><a class="dropdown-item" href="#">Offering (ሙዳይ) </a></li>
                     <li><a class="dropdown-item" href="#">Tithing (አስራት)</a></li>
-                   
+                
                 </ul>
             </li>
             {% if user.is_authenticated %}
@@ -58,9 +58,9 @@
                   {% if user.is_superuser %}
                       <li class="nav-item">
                         <a class="dropdown-item" href="{% url 'admin_page' %}">Admin Page</a>
-                     </li>
+                    </li>
                 
-                 {% endif %}                
+                {% endif %}                
                   
               </ul>
           </li>
