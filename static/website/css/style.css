@@ -78,14 +78,14 @@ a.btn-social,
 .btn-social .fa,.btn-social i
 {
     backface-visibility: hidden;
-    moz-backface-visibility: hidden;
-    ms-transform: scale(1);
-    o-transform: scale(1);
+    -moz-backface-visibility: hidden;
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
     transform: scale(1);
     transition: all .25s;
-    webkit-backface-visibility: hidden;
-    webkit-transform: scale(1);
-    webkit-transition: all .25s;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: scale(1);
+    -webkit-transition: all .25s;
 }
 .btn-social:hover,.btn-social:focus
 {
@@ -186,8 +186,8 @@ li {
     margin-left: 140px;
 }
 .figure-caption{
-   font-size: 2em !important;
-   color: black !important;
+    font-size: 2em !important;
+    color: black !important;
 }
 .tblaudio{
     width: 75%;
@@ -196,7 +196,7 @@ li {
     margin-top: 5%;
 }
 .list-suppert li{
-     list-style: upper-roman;
+    list-style: upper-roman;
 }
 .call-us {
     text-align: center;
@@ -206,7 +206,7 @@ li {
     margin-top: 1%;
 }
 .featurette-divider{
-   margin: 1.5rem !important; 
+    margin: 1.5rem !important; 
 }
 .elementor-element .elementor-widget-container {
     transition: .3s,
@@ -220,7 +220,7 @@ li {
 }
 @media only screen and (max-width: 600px) and (min-width: 380px) {
     .figure-caption{
-      font-size: 1.3em !important;  
+        font-size: 1.3em !important;  
     }
     .tblaudio{
         width: 100%;
@@ -240,4 +240,4 @@ li {
     .vh-100 {
         height: auto !important;
     }
-  }
+}

@@ -8,7 +8,7 @@
         <div class="card text-center" style="width: 20rem;">
             <div class="card-header">
                 ኦርቶዶክስ ተዋህዶ መጽሐፍ ቅዱሳዊ ቀኖና
-              </div>
+            </div>
             <div class="card-body">
                 
                 <p class="card-text">The <strong>Orthodox Tewahedo biblical canon</strong> is a version of the Christian Bible used in the two Oriental Orthodox churches of the Ethiopian and Eritrean traditions: the Ethiopian Orthodox Tewahedo Church and the Eritrean Orthodox Tewahedo Church. 
@@ -27,7 +27,7 @@
         <div class="card text-center" style="width: 20rem;">
             <div class="card-header">
                 ኦርቶዶክስ ተዋህዶ መጽሐፍ ቅዱሳዊ ቀኖና
-              </div>
+            </div>
             <div class="card-body">
                 
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -38,10 +38,27 @@
 
 </div>
 <hr class="featurette-divider">
-<span role="button" tabindex="0">Watch selected Ethiopian Orthodox Tewahedo Church Youtub Channel.</span>
 <p class="lead">Watch selected Ethiopian Orthodox Tewahedo Church Youtub Channel</p>
+
 <div class="ratio ratio-16x9">
-    <iframe src="https://www.youtube.com/embed/l0nzETH6MoA" target="_parent" title="YouTube video" allowfullscreen></iframe>
-  </div>
+    <iframe id="currentYoutube" src="https://www.youtube.com/embed/l0nzETH6MoA" target="_parent" title="YouTube video" allowfullscreen></iframe>
+</div>
+{% if user.is_authenticated %}
+<div style="padding: 15px;">
+    <div class="input-group mb-3">
+        <button OnClick = "replaceUrl()" class="btn btn-primary" type="button" id="button-addon1">Replace Weekly Youtube</button>
+        <input id="urlinput" type="text" class="form-control" placeholder="new weekly Youtube" aria-label="new add url button addon" aria-describedby="button-addon1">
+    </div>
+</div>
+{%endif %}
+
+<script>
+        function replaceUrl() {
+            var newSrc = document.getElementById('urlinput');
+            document.getElementById('currentYoutube').src = 'https://www.youtube.com/embed/mKOyzXFZsW4';
+            document.getElementById('currentYoutube').contentWindow.location.reload(true);
+        }
+
+</script>
 
 {% endblock %}

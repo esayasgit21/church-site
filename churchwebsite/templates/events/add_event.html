@@ -7,7 +7,7 @@
 <section class="" style="background-color: #f0ebf8;">
     <div class="container py-5 h-100">
         {% if user.is_authenticated %}
-     
+    
             
             <div class="container">
                 <fieldset class="border rounded-3 p-3">
@@ -19,9 +19,9 @@
 
                 <div class="alert alert-success" role="alert">
                     Your Event Was Submitted Succefully!!!
-                  </div>
-                  <br/>
-                  <a href="{% url 'add_event' %}">Add More Event</a>
+                </div>
+                <br/>
+                <a href="{% url 'add_event' %}">Add More Event</a>
                         
 
                     {% else %}
