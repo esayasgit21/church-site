@@ -25,12 +25,13 @@ from django.contrib.auth.models import User
 
 def index(req):
     todayYear = date.today().year
-    filePath = 'static/website/json/img_path.json'
-    with codecs.open(filePath,'r',encoding='utf-8', errors='strict') as image_file:  
-        data = json.load(image_file)
+    #filePath = 'static/website/json/img_path.json'
+    #with codecs.open(filePath,'r',encoding='utf-8', errors='strict') as image_file:  
+        #data = json.load(image_file)
+    image_list = ImageData.objects.all().order_by('-id')
     return render(req,'index.html', {
         'year':todayYear,
-        'data':data
+        'image_list':image_list
         })
 
 def about(req):
@@ -81,22 +82,13 @@ def bibleStudy(req):
 
 def admin_page(req):
     submitted = False
-    data = loda_jsonData()
-    count = len(data[0])
+    image_list = ImageData.objects.all().order_by('-id')
+    count = len(image_list) 
+    print(f'count{count}')
     if req.method == 'POST':
         form = ImageForm(req.POST, req.FILES)
         if len(req.FILES) != 0 :
-
-            uploaded_file = req.FILES.get('image',False)
             if form.is_valid:
-                body  = {
-                    'name' :   uploaded_file.name,  
-                    'title' :  req.POST.get('title',False),
-                    'body' : req.POST.get('body',False),  
-                    'img_path' : 'media/img/' ,
-                    'web_link': req.POST.get('web_link',False),                                
-                }
-                write_json(body)
                 form.save()
             # save file into json and upload image
                 return HttpResponseRedirect('admin_page?submitted=True') 
@@ -106,7 +98,7 @@ def admin_page(req):
             submitted = True
 
     return render(req,'admin_page.html', {
-                'data': data,
+                'image_list': image_list,
                 'form': form,
                 'submitted' : submitted,
                 'count' : count
@@ -142,19 +134,12 @@ def write_json(new_data):
         # convert back to json.
         json.dump(file_data, file, indent = 4)
 
-def delete_image(req,file_name):
-    path_local = 'media/img/'
+def delete_image(req,image_id):
+
+    imageData = ImageData.objects.get(pk=image_id)
     if req.user.is_superuser:
-        data = loda_jsonData()
-        index = select_data(data, path_local, file_name )
-        del(data[index])
-        if index >=0:
-            os.remove(path_local + file_name)
-
-        with open("static/website/json/img_path.json", 'w') as data_file:
-            data = json.dump(data, data_file, indent=4, sort_keys=True)
-
-        messages.success(req, ("Image Deleted Successfully!!"))
+        imageData.delete()
+        messages.success(req, ("Selected Image Deleted Successfully!!"))
         return redirect('admin_page')
     else:
         messages.success(req, 'You are not Authorized To Remove selected Image')
@@ -273,6 +258,28 @@ def add_event(req):
         if 'submitted' in req.GET:
             submitted = True
     return render(req, 'events/add_event.html', {'form':form, 'submitted': submitted})
+
+def add_image(req):
+
+    submitted = False
+    if req.method == 'POST':
+        form = ImageData(req.POST, req.FILES)
+        print(f'form {req.user}')
+        if form.is_valid():
+            course = form.save()
+            course.manager = req.user
+            course.save()
+            #form.save()
+        return HttpResponseRedirect('/add_course?submitted=True')
+    else:
+        form = ImageData()    
+        if 'submitted' in req.GET:
+            submitted = True
+    return render(req, 'course/add_course.html', 
+        {
+        'form':form, 
+        'submitted': submitted
+        })
 
 # Create Admin Event Approval Page
 def admin_event_approval(req):

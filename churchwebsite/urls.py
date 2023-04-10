@@ -21,7 +21,7 @@ urlpatterns = [
     path('update_course/<course_id>',views.update_course,name='update_course'),
     path('delete_course/<course_id>', views.delete_course, name='delete_course'),
     path('generate_qr_code',views.generate_qr_code,name='qrcode'),
-    path('delete_image/<file_name>', views.delete_image, name='delete_image'),
+    path('delete_image/<image_id>', views.delete_image, name='delete_image'),
     path('event_approval',views.admin_event_approval,name='event_approval'),
     path('download_file/<int:course_id>/', views.download_file, name = 'download_file')
 ]

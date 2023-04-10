@@ -12,9 +12,9 @@ class Service(models.Model):
     
 class ImageData(models.Model):
     title = models.CharField(max_length=120, blank = False)
-    body = models.TextField(max_length=255,blank = False)
+    body = models.TextField(max_length=255,blank = True)
     web_link = models.URLField('Website Address', blank = True)
-    image = models.ImageField(upload_to='img/', blank = True, null = True)
+    image = models.ImageField(upload_to='img/', blank = False, null = True)
 
     def __str__(self):
         return self.title
