@@ -84,7 +84,6 @@ def admin_page(req):
     submitted = False
     image_list = ImageData.objects.all().order_by('-id')
     count = len(image_list) 
-    print(f'count{count}')
     if req.method == 'POST':
         form = ImageForm(req.POST, req.FILES)
         if len(req.FILES) != 0 :
@@ -147,8 +146,10 @@ def delete_image(req,image_id):
 
 def all_events(req):
     event_list = Event.objects.all().order_by('event_date')
+    event_count = len(event_list.filter(approved = True))
     return render(req,'events/all_events.html', {
-        'event_list': event_list
+        'event_list': event_list,
+        'event_count' : event_count
     })
 
 def all_course(req):
@@ -156,9 +157,7 @@ def all_course(req):
     return render(req,'course/all_course.html',
         {
             'course_list': course_list
-        
         })
-
 
 def update_event(request, event_id):
 	event = Event.objects.get(pk=event_id)

@@ -63,17 +63,28 @@ class Event(models.Model):
         return self.name
     
     @property
+    def Delete_Expried_Event(self):
+        today = date.today()
+        days_till = self.event_date.date() - today
+        days_till_stripped = str(days_till).split(",", 1)[0]
+        print(f'days_till{days_till_stripped.split(" ",1)[0]}')
+        if int(days_till_stripped.split(" ",1)[0]) < -7:
+            return 20
+        else:
+            return days_till_stripped
+    
+    @property
     def Days_Till(self):
         today = date.today()
         days_till = self.event_date.date() - today
         days_till_stripped = str(days_till).split(",", 1)[0]
         return days_till_stripped
     
-    """@property
+    @property
     def Is_Past(self):
         today = date.today()
-        if self.event_date < today:
+        if self.event_date.date() < today:
             thing = 'Past'
         else:
-            thing = 'Future'
-        return thing """
+            thing = 'In The Future'
+        return thing
