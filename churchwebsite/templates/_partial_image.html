@@ -1,0 +1,33 @@
+<p class="lead">Add New Image</p>
+                    {% if count > 7 %}
+                    <div class="alert alert-info" role="alert">
+                        FYI: You have enogh image uploaded! if you want to add more, Please delete at least one image first!
+                    </div>
+                
+                    {% else %}
+                
+                    
+                    {% if submitted %}
+                    <div style="margin-top: 20px;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Your Image Was Uploaded Succefully!!!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <a href="{% url 'admin_page' %}">Add More Image</a>
+                    <br/>
+                    {% else %}
+                    {% if msg %}
+                    <div class="alert alert-danger alert-dismissible fade show float-end" role="alert">
+                        {{ msg }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                    <form action="{% url 'admin_page' %}" method="POST" enctype="multipart/form-data"> 
+                        {% csrf_token %}
+
+                        {{ form.as_p }}
+
+                        <input type="submit" class="btn btn-primary">
+
+                    </form>
+                    {% endif %}
+                    {% endif %}

@@ -79,31 +79,7 @@
                         </tbody>
                     </table>
                     <hr class="featurette-divider">
-                    <p class="lead">Add New Image</p>
-                    {% if count > 7 %}
-                    <div class="alert alert-info" role="alert">
-                        FYI: You have enogh image uploaded! if you want to add more, Please delete at least one image first!
-                    </div>
-                
-                    {% else %}
-                    {% if submitted %}
-                    <div style="margin-top: 20px;" class="alert alert-warning alert-dismissible fade show" role="alert">
-                            Your Image Was Uploaded Succefully!!!
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    <a href="{% url 'admin_page' %}">Add More Image</a>
-                    <br/>
-                    {% else %}
-                    <form action="" method="POST" enctype="multipart/form-data"> 
-                        {% csrf_token %}
-
-                        {{ form.as_p }}
-
-                        <input type="submit" class="btn btn-primary">
-
-                    </form>
-                    {% endif %}
-                    {% endif %}
+                    {% include '_partial_image.html' %}
 
                 <br/>	
                 </fieldset>

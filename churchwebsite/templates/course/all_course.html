@@ -2,16 +2,17 @@
 
 {% block content %}
 	
-	<h2 style="margin-top: 5px;">Available Course List</h2>
+	<h3 style="margin-top: 5px; text-align: center;">Available Learning materials</h3>
 <br/>
 {% regroup course_list by grade as courses %}
 
 {% for c in courses %}
-<p>
+<div class="table-responsive-md">
 	<button type="button" class="btn btn-success">
 		Grade Level: <span class="badge bg-secondary">{{ c.grouper | capfirst  }}</span>
 	</button>
 <table class="table table-striped table-hover table-bordered">
+	
     <thead>
         <tr>
 			<th scope="col">Subject</th>
@@ -52,5 +53,5 @@
 </tbody>
 </table>
 {% endfor %}
-</p>
+</div>
 {% endblock %}

@@ -1,7 +1,5 @@
 import json
-
 from django.conf import settings
-#from unicode import unicode
 from .models import Course, Event, ImageData
 from django.shortcuts import render, redirect, get_object_or_404
 from datetime import date
@@ -86,11 +84,19 @@ def admin_page(req):
     count = len(image_list) 
     if req.method == 'POST':
         form = ImageForm(req.POST, req.FILES)
-        if len(req.FILES) != 0 :
+        file = req.FILES['image']
+        if len(req.FILES) != 0 and file.size < 1048576:
             if form.is_valid:
                 form.save()
             # save file into json and upload image
-                return HttpResponseRedirect('admin_page?submitted=True') 
+                return HttpResponseRedirect('admin_page?submitted=True')
+        else:
+            if bool(req.FILES.get('image', False)) == True:
+                msg = 'Error: File too large. Size should not exceed 1 MiB.'
+            return render(req,'admin_page.html',{
+                'msg': msg,
+                'form': ImageForm,
+            })
     else:
         form = ImageForm
         if 'submitted' in req.GET:
@@ -100,7 +106,8 @@ def admin_page(req):
                 'image_list': image_list,
                 'form': form,
                 'submitted' : submitted,
-                'count' : count
+                'count' : count,
+                'msg': False,
                 })
 
 def select_data(data, path, filename):
@@ -258,7 +265,7 @@ def add_event(req):
             submitted = True
     return render(req, 'events/add_event.html', {'form':form, 'submitted': submitted})
 
-def add_image(req):
+"""def add_image(req):
 
     submitted = False
     if req.method == 'POST':
@@ -269,16 +276,18 @@ def add_image(req):
             course.manager = req.user
             course.save()
             #form.save()
-        return HttpResponseRedirect('/add_course?submitted=True')
+            return HttpResponseRedirect('admin_page?submitted=True')
+        else:
+            return 
     else:
         form = ImageData()    
         if 'submitted' in req.GET:
             submitted = True
-    return render(req, 'course/add_course.html', 
+    return render(req, 'admin_page.html', 
         {
         'form':form, 
         'submitted': submitted
-        })
+        })"""
 
 # Create Admin Event Approval Page
 def admin_event_approval(req):
@@ -353,11 +362,3 @@ def download_file(req, course_id):
     response = HttpResponse(file.image, content_type=mime_type)
     response['Content-Disposition'] = f'attachment; filename="{file.image.name}"'
     return response
-    """if os.path.exists(file_path):
-
-        #filename =  req.FILES.get('image',False).name
-        mime_type, _ = mimetypes.guess_type(file_path)
-        response = HttpResponse(file.image, content_type=mime_type)
-        response['Content-Disposition'] = f'attachment; filename="{file.image.name}"'
-        return response
-    raise Http404"""
