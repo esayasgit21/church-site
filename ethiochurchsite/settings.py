@@ -77,8 +77,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ethiochurchsite.wsgi.application'
-
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
