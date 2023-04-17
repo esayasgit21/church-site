@@ -24,13 +24,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+o4d*rnef=o@917ed0q!+&7+h8^r2s#0gvwaxx_@sxo!y(3x=0'
-
+#SECRET_KEY = 'django-insecure-+o4d*rnef=o@917ed0q!+&7+h8^r2s#0gvwaxx_@sxo!y(3x=0'
+# 
+SECRET_KEY = '5_lqn-#r0+k%w8*gg4o$x)dyf!+dseq)f#^%3o@%=^4=uwxk^e'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-ALLOWED_HOSTS = ['ethio-church-website.herokuapp.com']
+DEBUG = True
+#ALLOWED_HOSTS = ['ethio-church-website.herokuapp.com']
 
-#ALLOWED_HOSTS = ['127.0.0.1','ethio-church-website.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','ethio-church-website.herokuapp.com']
 
 
 # Application definition
@@ -177,38 +178,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'egizaw926@gmail.com'
 EMAIL_HOST_PASSWORD = 'ioiexnvcuwjtlizy'
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'ethio-church-website.log',
-            'formatter': 'verbose'
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers':['file'],
-            'propagate': True,
-            'level':'DEBUG',
-        },
-        'MYAPP': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
-    }
-}
 
 django_heroku.settings(locals()) 
