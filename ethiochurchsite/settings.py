@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 
 SECRET_KEY = '5_lqn-#r0+k%w8*gg4o$x)dyf!+dseq)f#^%3o@%=^4=uwxk^e'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 #ALLOWED_HOSTS = ['ethio-church-website.herokuapp.com']
 
 ALLOWED_HOSTS = ['127.0.0.1','ethio-church-website.herokuapp.com']

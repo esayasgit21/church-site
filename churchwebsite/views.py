@@ -21,8 +21,13 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 # Create your views here.
 
+from django.core.management.utils import get_random_secret_key
+
+
+
 def index(req):
     todayYear = date.today().year
+    #print(f'get {get_random_secret_key()}')
     #filePath = 'static/website/json/img_path.json'
     #with codecs.open(filePath,'r',encoding='utf-8', errors='strict') as image_file:  
         #data = json.load(image_file)
