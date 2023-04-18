@@ -139,8 +139,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # to host heroku
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # to host heroku
+#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 STORAGES = {
     # ...
     "staticfiles": {
@@ -178,5 +178,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'egizaw926@gmail.com'
 EMAIL_HOST_PASSWORD = 'ioiexnvcuwjtlizy'
-
+django_heroku.settings(config=locals(), staticfiles=False,logging=False)
 django_heroku.settings(locals()) 
