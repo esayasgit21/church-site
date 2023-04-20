@@ -190,8 +190,8 @@ def update_event(request, event_id):
 
 def update_course(req, course_id):
     course = Course.objects.get(pk=course_id)
-    form = CourseForm(req.POST or None, instance=course)
-
+    form = CourseForm(req.POST or None, req.FILES or None, instance=course)
+    #course.id
     if form.is_valid():
         form.save()
         return redirect('all_course')
@@ -226,7 +226,6 @@ def add_course(req):
     submitted = False
     if req.method == 'POST':
         form = CourseForm(req.POST, req.FILES)
-        print(f'form {req.user}')
         if form.is_valid():
             course = form.save()
             course.manager = req.user
@@ -360,10 +359,10 @@ def generate_qr_code(req):
 def download_file(req, course_id):
     # fill these variables with real values
     file = get_object_or_404(Course,pk=course_id)
-    path = '/media/course'
-    file_path = os.path.join(settings.MEDIA_ROOT, path)
-    print(f'file_path{file_path}')
+    pathLocal = '/media/course'
+    file_path = path.join(settings.MEDIA_ROOT, pathLocal)
     mime_type, _ = mimetypes.guess_type(file_path)
-    response = HttpResponse(file.image, content_type=mime_type)
+    response = HttpResponse(file.image.url, content_type=mime_type)
+    #response['Content-Disposition'] = 'attachment; filename=DownloadedText.txt'
     response['Content-Disposition'] = f'attachment; filename="{file.image.name}"'
     return response
