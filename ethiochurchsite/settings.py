@@ -33,7 +33,7 @@ DEBUG = True
 #ALLOWED_HOSTS = ['ethio-church-website.herokuapp.com']
 
 ALLOWED_HOSTS = ['127.0.0.1','ethio-church-website.herokuapp.com']
-
+# ALLOWED_HOSTS = ['127.0.0.1','debrebisratgabriel.org']
 
 # Application definition
 
