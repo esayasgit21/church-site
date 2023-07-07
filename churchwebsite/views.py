@@ -343,7 +343,7 @@ def generate_qr_code(req):
             box_size=10,
             border=4,
         )
-        qr.add_data('https://ethio-church-website.herokuapp.com/')
+        qr.add_data('https://www.debrebisratgabriel.org/')
 
         #img = qr.make(fit=True)
         img_qr = qr.make_image()
