@@ -32,8 +32,8 @@ SECRET_KEY = '5_lqn-#r0+k%w8*gg4o$x)dyf!+dseq)f#^%3o@%=^4=uwxk^e'
 DEBUG = True
 #ALLOWED_HOSTS = ['ethio-church-website.herokuapp.com']
 
-ALLOWED_HOSTS = ['127.0.0.1','ethio-church-website.herokuapp.com']
-# ALLOWED_HOSTS = ['127.0.0.1','debrebisratgabriel.org']
+#ALLOWED_HOSTS = ['127.0.0.1','ethio-church-website.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','debrebisratgabriel.org']
 
 # Application definition
 
