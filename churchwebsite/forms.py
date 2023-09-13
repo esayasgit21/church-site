@@ -1,7 +1,7 @@
 # Super user event form
 from django import forms
 from django.forms import ModelForm
-from .models import Course, Event, ImageData
+from .models import Course, Event, ImageData2
 
 # Admin SuperUser Event Form
 class AdminEventForm(ModelForm):
@@ -27,7 +27,7 @@ class AdminEventForm(ModelForm):
 
 class ImageForm(ModelForm):
 	class Meta:
-		model = ImageData
+		model = ImageData2
 		fields = ('title', 'body', 'image','web_link','path')
 		labels = {
 			"title":'',
