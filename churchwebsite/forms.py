@@ -28,17 +28,19 @@ class AdminEventForm(ModelForm):
 class ImageForm(ModelForm):
 	class Meta:
 		model = ImageData
-		fields = ('title', 'body', 'image','web_link')
+		fields = ('title', 'body', 'image','web_link','path')
 		labels = {
 			"title":'',
 			"body" : '',
 			"image" : '',
 			'web_link': '',
+			'path':'',
 		}
 		widgets = {
 			'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Image Title'}),
 			'body': forms.Textarea(attrs={'rows':4, 'cols':15, 'class':'form-control', 'placeholder':'Description'}),
 			'web_link': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Web Address'}),
+			'path': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Image Path'}),
 		}
 
 # Course regestration

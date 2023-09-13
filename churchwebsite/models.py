@@ -15,7 +15,7 @@ class ImageData(models.Model):
     body = models.TextField(max_length=255,blank = True)
     web_link = models.URLField('Website Address', blank = True)
     image = models.ImageField(upload_to='img/', blank = False, null = True)
-
+    path = models.TextField(max_length=120, blank = True)
     def __str__(self):
         return self.title
 
