@@ -77,6 +77,9 @@ def login(req):
 def doctrinal(req):
     return render(req,'doctrinal.html',{})
 
+def etoc(req):
+    return render(req,'eotc.html',{})
+
 def spritual(req):
     return render(req, 'spritual.html',{})
 

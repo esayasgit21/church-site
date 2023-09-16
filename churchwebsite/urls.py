@@ -12,6 +12,7 @@ urlpatterns = [
     path('add_event', views.add_event, name='add_event'),
     path('admin_page', views.admin_page, name='admin_page'),
     path('doctrinal', views.doctrinal, name='doctrinal'),
+     path('eotc', views.etoc, name='eotc'),
     path('spritual',views.spritual,name='spritual'),
     path('bible',views.bibleStudy,name='bible'),
     path('all_events',views.all_events,name='all_events'),

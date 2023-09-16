@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -41,7 +42,7 @@
 				{{ course.description }}
 			</td>
 			<td class="col-md-1">
-				<a href="{% url 'download_file' course.id %}">Download</a>
+				<a style="cursor: not-allowed;" class="isDisabled" href="{% url 'download_file' course.id %}">Download</a>
 			</td>
 			{% if user.is_authenticated %}
 			<td class="col-md-2">

@@ -42,7 +42,7 @@
   
 
     <div class="container-fluid marketing" style="background-color: #f0ebf8;">
-  
+      <hr class="featurette-divider">
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
@@ -80,8 +80,9 @@
       <!-- START THE FEATURETTES -->
   
       <hr class="featurette-divider">
-  
-      <div class="row featurette">
+  <!--
+    <hr class="featurette-divider">
+    <div class="row featurette">
         <div class="col-md-6">
           <h3 class="featurette-heading fw-normal lh-1">A Brief History of Ethiopian Orthodox Tewahedo Church.</span></h3>
           <p class="lead">
@@ -98,22 +99,24 @@
           <img src="{% static 'website/img/core-img/EthiopiaChurch.jpg' %}" width="500" height="500" class="bd-placeholder-img-lg d-none d-md-block" alt="Ethiopian Church">
         </div>
       </div>
-  
-      <hr class="featurette-divider">
+  -->
   
       <div class="row featurette">
         <div class="col-md-6 order-md-2">
           <h3 class="featurette-heading fw-normal lh-1">History of Ethiopian Orthodox Tewahedo Church. <span class="text-muted">in Lynnwood Area.</span></h3>
           <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+          <hr class="featurette-divider">
+          <p><a class="" href="{% url 'eotc'%}">Read more about E.T.O.C history ...</a></p>
         </div>
         <div class="col-md-6 order-md-1">
           <img src="{% static 'website/img/core-img/dbsaintg.jpg' %}" width="500" height="500" class="bd-placeholder-img-lg d-none d-md-block" alt="Lynnwood Church">
-  
+          
         </div>
+       
       </div>
   
       <hr class="featurette-divider">
-  
+   <!--
       <div class="row featurette">
         <div class="col-md-6">
           <h3 class="featurette-heading fw-normal lh-1">Holy Scripture. <span class="text-muted">it is truth.</span></h3>
@@ -124,8 +127,7 @@
   
         </div>
       </div>
-
-      <hr class="featurette-divider">
+   -->
   
       <div class="row featurette">
         <div class="col-md-6">
@@ -173,7 +175,7 @@
         </div>
       </div>
   
-      <hr class="featurette-divider">
+      
   
       <!-- /END THE FEATURETTES -->
   

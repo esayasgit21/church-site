@@ -9,6 +9,12 @@
     font-weight: normal;
     font-style: normal;
 }
+.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+  }
 a.btn-social,
 .btn-social
 {
