@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 <section class="vh-100" style="background-color: #f0ebf8;">
     <div class="container py-5 h-100">
         <h2>Events</h2>
@@ -20,12 +21,15 @@
                         <h5 class="card-title">Location: {{ event.location }}</h5>
                         <ul class="list-group">
                             <li class="list-group-item list-group-item-action">Date: {{ event.event_date }}</li>
-                            <li class="list-group-item list-group-item-action">Days Till Event: {{ event.Days_Till }}</li>
-                            <li class="list-group-item list-group-item-action">Event Status: {{ event.Is_Past}}</li>
-                            <li class="list-group-item list-group-item-action">Description:  {{ event.description}}</li>
-                            <li class="list-group-item list-group-item-action">Confirmed: {% if event.approved %} Yes {% else %}  Not Yet  {% endif %}</li>
                             <li class="list-group-item list-group-item-action">Attendees: {{event.attendees}}</li>
+                            <li class="list-group-item list-group-item-action">Days Till Event: {{ event.Days_Till }}</li>
+                            <li class="list-group-item list-group-item-action">Event Status: {{ event.Is_Past}}</li>                          
+                            <li class="list-group-item list-group-item-action">Confirmed: {% if event.approved %} Yes {% else %}  Not Yet  {% endif %}</li>
+                            <li class="list-group-item list-group-item-action">Description:  {{ event.description}}</li>
                         </ul>
+                        <div>
+                            <img src="{% static 'website/img/core-img/flyer292023.jpeg' %}" alt="Current flyer here..." style="width:100%;">
+                        </div>
                     </div>
                 {% if user.is_authenticated %}
                     {% if user == event.manager %}
