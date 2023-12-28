@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RenameModel(
             old_name='ImageData2',
-            new_name='ImageData',
+            new_name='ToBeRemoved',
         ),
     ]
