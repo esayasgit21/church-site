@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.DeleteModel(
-            name='ImageData2',
+            name='ImageData',
         ),
         migrations.DeleteModel(
             name='ToBeRemoved'
