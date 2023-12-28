@@ -1,6 +1,6 @@
 import json
 from django.conf import settings
-from .models import Course, Event, ImageData
+from .models import Course, Event, ImagePath
 from django.shortcuts import render, redirect, get_object_or_404
 from datetime import date
 from django.core.mail import send_mail
@@ -31,7 +31,7 @@ def index(req):
     #filePath = 'static/website/json/img_path.json'
     #with codecs.open(filePath,'r',encoding='utf-8', errors='strict') as image_file:  
         #data = json.load(image_file)
-    image_list = ImageData.objects.all().order_by('-id')
+    image_list = ImagePath.objects.all().order_by('-id')
     return render(req,'index.html', {
         'year':todayYear,
         'image_list':image_list
@@ -88,7 +88,7 @@ def bibleStudy(req):
 
 def admin_page(req):
     submitted = False
-    image_list = ImageData.objects.all().order_by('-id')
+    image_list = ImagePath.objects.all().order_by('-id')
     count = len(image_list) 
     if req.method == 'POST':
         form = ImageForm(req.POST, req.FILES)
@@ -150,7 +150,7 @@ def write_json(new_data):
 
 def delete_image(req,image_id):
 
-    imageFile = ImageData.objects.get(pk=image_id)
+    imageFile = ImagePath.objects.get(pk=image_id)
     if req.user.is_superuser:
         imageFile.delete()
         messages.success(req, ("Selected Image Deleted Successfully!!"))
@@ -276,7 +276,7 @@ def add_image(req):
 
     submitted = False
     if req.method == 'POST':
-        form = ImageData(req.POST, req.FILES)
+        form = ImagePath(req.POST, req.FILES)
         print(f'form {req.user}')
         if form.is_valid():
             course = form.save()
@@ -287,7 +287,7 @@ def add_image(req):
         else:
             return 
     else:
-        form = ImageData()    
+        form = ImagePath()    
         if 'submitted' in req.GET:
             submitted = True
     return render(req, 'admin_page.html', 

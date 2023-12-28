@@ -10,7 +10,7 @@ class Service(models.Model):
     def __str__(self):
         return self.title
     
-class ImageData(models.Model):
+class ImagePath(models.Model):
     title = models.CharField(max_length=120, blank = False)
     body = models.TextField(max_length=255,blank = True)
     web_link = models.URLField('Website Address', blank = True)
