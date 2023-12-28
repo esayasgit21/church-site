@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('churchwebsite', '0002_churchuser_course_imagedata_location_event'),
+        ('churchwebsite', '0002_churchuser_course_imagedata2_location_event'),
     ]
 
     operations = [
