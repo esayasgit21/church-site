@@ -18,7 +18,7 @@
                         {{ event }}
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Location: {{ event.location }}</h5>
+                        <h5 class="card-title">Location: <a style="text-decoration: none;" href="https://maps.app.goo.gl/nx8EqGSs5V8tGWHa7" target="_blank">{{ event.location }}</a> </h5>
                         <ul class="list-group">
                             <li class="list-group-item list-group-item-action">Date: {{ event.event_date }}</li>
                             <li class="list-group-item list-group-item-action">Attendees: {{event.attendees}}</li>
