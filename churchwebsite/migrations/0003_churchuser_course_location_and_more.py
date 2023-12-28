@@ -14,9 +14,16 @@ class Migration(migrations.Migration):
 
     operations = [
         
-        migrations.RenameModel(
-            old_name='toberemoved',
-            new_name='ImagePath',
-        ),
+    migrations.CreateModel(
+            name='ImagePath',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('title', models.CharField(max_length=120)),
+                ('body', models.TextField(blank=True, max_length=255)),
+                ('web_link', models.URLField(blank=True, verbose_name='Website Address')),
+                ('image', models.ImageField(null=True, upload_to='img/')),
+                ('path', models.TextField(blank=True, max_length=120)),
+            ],
+        )
         
     ]
