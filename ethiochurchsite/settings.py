@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 
 SECRET_KEY = '5_lqn-#r0+k%w8*gg4o$x)dyf!+dseq)f#^%3o@%=^4=uwxk^e'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 #ALLOWED_HOSTS = ['ethio-church-website.herokuapp.com']
 
 #ALLOWED_HOSTS = ['127.0.0.1','ethio-church-website.herokuapp.com']
@@ -82,8 +82,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ethiochurchsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-"""
-DATABASES = {
+
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
