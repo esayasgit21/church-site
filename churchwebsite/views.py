@@ -31,7 +31,8 @@ def index(req):
     #filePath = 'static/website/json/img_path.json'
     #with codecs.open(filePath,'r',encoding='utf-8', errors='strict') as image_file:  
         #data = json.load(image_file)
-    image_list = ImagePath.objects.all().order_by('-id')
+    image_list = loda_jsonData()
+    # ImagePath.objects.all().order_by('-id')
     return render(req,'index.html', {
         'year':todayYear,
         'image_list':image_list
@@ -356,7 +357,8 @@ def generate_qr_code(req):
         img_bg.save(file_name)
         return FileResponse(open(file_name, 'rb'),as_attachment=True,filename=file_name)
     
-
+def custom_404(request):
+    return render(request, '404.html', {}, status=404)
 # download course
 
 def download_file(req, course_id):
