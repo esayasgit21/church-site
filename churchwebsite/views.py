@@ -357,6 +357,31 @@ def generate_qr_code(req):
         img_bg.save(file_name)
         return FileResponse(open(file_name, 'rb'),as_attachment=True,filename=file_name)
     
+def generate_qr_code_donation(req):
+    print('req',req)
+    file_path = 'static/website/img/core-img/qrcodeimg-Pdon.jpg'
+    generatewd_file_path = 'static/website/img/core-img/churchSupportQRCode.png'
+    file_exists = path.exists(generatewd_file_path)
+    if file_exists is True:
+        return FileResponse(open(generatewd_file_path, 'rb'),as_attachment=True,filename=generatewd_file_path) 
+    else:
+        img_bg = Image.open(file_path) 
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        qr.add_data('https://www.paypal.com/donate/?hosted_button_id=T7CGDEEQGF8ZJ')
+
+        #img = qr.make(fit=True)
+        img_qr = qr.make_image()
+        pos = (img_bg.size[0] - img_qr.size[0], img_bg.size[1] - img_qr.size[1])
+        img_bg.paste(img_qr, pos)
+        file_name = generatewd_file_path
+        img_bg.save(file_name)
+        return FileResponse(open(file_name, 'rb'),as_attachment=True,filename=file_name)
+    
 def custom_404(request):
     return render(request, '404.html', {}, status=404)
 # download course
