@@ -6,7 +6,15 @@
 
   <main style="background-color: #f0ebf8;">
 
-      <div id="CarouselWithControls" style="padding-top: 60px;" class="carousel slide" data-bs-ride="carousel">
+    <div>
+      <h2 class="text-center">{{ item.title }}</h2>
+      <img src="{% static 'website/img/core-img/event1.jpeg' %}" alt="Current flyer here..." style="width:100%;">
+      <div class="carousel-caption d-none d-sm-block">
+        <p>በዓሉን በደብረ ብሥራት ቅዱስ ገብርኤል ቤተ ክርስቲያን በጋራ እናክብር</p>
+      </div>
+  </div>
+<!---
+<div id="CarouselWithControls" style="padding-top: 60px;" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
         {% for item in image_list %}
             {% if forloop.first %}
@@ -38,6 +46,8 @@
         </a>
         {% endfor %}
       </div>
+-->
+      
     </div>
   
 
